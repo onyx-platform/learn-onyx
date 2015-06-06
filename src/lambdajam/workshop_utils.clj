@@ -1,4 +1,4 @@
-(ns lambdajam-2015.workshop-utils
+(ns lambdajam.workshop-utils
   (:require [clojure.test :refer [is]]
             [clojure.core.async :refer [chan sliding-buffer >!!]]
             [onyx.plugin.core-async :refer [take-segments!]]

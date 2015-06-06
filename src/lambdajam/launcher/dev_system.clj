@@ -1,4 +1,4 @@
-(ns lambdajam-2015.launcher.dev-system
+(ns lambdajam.launcher.dev-system
   (:require [clojure.core.async :refer [chan <!!]]
             [clojure.java.io :refer [resource]]
             [com.stuartsierra.component :as component]
@@ -34,5 +34,3 @@
 
 (defn onyx-dev-env [n-peers]
   (map->OnyxDevEnv {:n-peers n-peers}))
-
-

@@ -1,7 +1,7 @@
 (ns user
   (:require [clojure.tools.namespace.repl :refer [refresh]]
             [com.stuartsierra.component :as component]
-            [lambdajam-2015.launcher.dev-system :refer [onyx-dev-env]]))
+            [lambdajam.launcher.dev-system :refer [onyx-dev-env]]))
 
 (def n-peers 3)
 
