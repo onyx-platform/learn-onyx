@@ -1,0 +1,15 @@
+/target
+/classes
+/checkouts
+/data
+pom.xml
+pom.xml.asc
+*.jar
+*.class
+/.lein-*
+/.nrepl-port
+onyx.log*
+hs_err_pid*
+.#*
+.DS_Store
+*.jfr
