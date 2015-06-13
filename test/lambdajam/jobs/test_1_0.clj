@@ -15,7 +15,7 @@
 ;; This challenge is an already-working example to get your started.
 ;; Try it with:
 ;;
-;; `lein test lambdajam.jobs.level-1.test-1-0`
+;; `lein test lambdajam.jobs.test-1-0`
 
 ;; Here's a picture of the workflow that we're crafting. Data
 ;; starts at the top and flows downward is all directions. This
