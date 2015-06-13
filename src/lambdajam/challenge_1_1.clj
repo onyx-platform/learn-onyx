@@ -5,7 +5,9 @@
 
 ;;; Workflows ;;;
 
-;;; <<< FILL ME IN >>>
+;;; <<< BEGIN FILL ME IN >>>
+
+(def workflow)
 
 (def workflow
   [[:read-segments :cube-n]
@@ -13,44 +15,51 @@
    [:add-ten :multiply-by-5]
    [:multiply-by-5 :write-segments]])
 
-;;; <<< FILL ME IN >>>
+;;; <<< END FILL ME IN >>>
 
 ;;; Catalogs ;;;
 
-(def catalog
-  [{:onyx/name :read-segments
-    :onyx/ident :core.async/read-from-chan
-    :onyx/type :input
-    :onyx/medium :core.async
-    :onyx/batch-size batch-size
-    :onyx/max-peers 1
-    :onyx/doc "Reads segments from a core.async channel"}
+(defn build-catalog
+  ([] (build-catalog 5 50))
+  ([batch-size batch-timeout]
+     [{:onyx/name :read-segments
+       :onyx/ident :core.async/read-from-chan
+       :onyx/type :input
+       :onyx/medium :core.async
+       :onyx/batch-size batch-size
+       :onyx/batch-timeout batch-timeout
+       :onyx/max-peers 1
+       :onyx/doc "Reads segments from a core.async channel"}
 
-   {:onyx/name :cube-n
-    :onyx/fn :lambdajam.challenge-1-1/cube-n
-    :onyx/type :function
-    :onyx/batch-size batch-size
-    :onyx/doc "Mutiply :n by itself twice"}
+      {:onyx/name :cube-n
+       :onyx/fn :lambdajam.challenge-1-1/cube-n
+       :onyx/type :function
+       :onyx/batch-size batch-size
+       :onyx/batch-timeout batch-timeout
+       :onyx/doc "Mutiply :n by itself twice"}
 
-   {:onyx/name :add-ten
-    :onyx/fn :lambdajam.challenge-1-1/add-ten
-    :onyx/type :function
-    :onyx/batch-size batch-size
-    :onyx/doc "Add 10 to :n"}
+      {:onyx/name :add-ten
+       :onyx/fn :lambdajam.challenge-1-1/add-ten
+       :onyx/type :function
+       :onyx/batch-size batch-size
+       :onyx/batch-timeout batch-timeout
+       :onyx/doc "Add 10 to :n"}
 
-   {:onyx/name :multiply-by-5
-    :onyx/fn :lambdajam.challenge-1-1/multiply-by-5
-    :onyx/type :function
-    :onyx/batch-size batch-size
-    :onyx/doc "Multiply :n by 5"}
+      {:onyx/name :multiply-by-5
+       :onyx/fn :lambdajam.challenge-1-1/multiply-by-5
+       :onyx/type :function
+       :onyx/batch-size batch-size
+       :onyx/batch-timeout batch-timeout
+       :onyx/doc "Multiply :n by 5"}
 
-   {:onyx/name :write-segments
-    :onyx/ident :core.async/write-to-chan
-    :onyx/type :output
-    :onyx/medium :core.async
-    :onyx/batch-size batch-size
-    :onyx/max-peers 1
-    :onyx/doc "Writes segments to a core.async channel"}])
+      {:onyx/name :write-segments
+       :onyx/ident :core.async/write-to-chan
+       :onyx/type :output
+       :onyx/medium :core.async
+       :onyx/batch-size batch-size
+       :onyx/batch-timeout batch-timeout
+       :onyx/max-peers 1
+       :onyx/doc "Writes segments to a core.async channel"}]))
 
 ;;; Functions ;;;
 

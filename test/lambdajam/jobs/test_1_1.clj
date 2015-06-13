@@ -7,7 +7,6 @@
             [lambdajam.workshop-utils :as u]
             [onyx.api]))
 
-
 ;;    read-segments
 ;;         |
 ;;         v
@@ -36,15 +35,16 @@
    {:n 2610}
    {:n 3695}])
 
-(deftest test-level-1-challenge-0
-  (let [dev-env (component/start (onyx-dev-env (u/n-peers c/catalog c/workflow)))]
+(deftest test-level-1-challenge-1
+  (let [catalog (c/build-catalog)
+        dev-env (component/start (onyx-dev-env (u/n-peers catalog c/workflow)))]
     (try 
       (let [dev-cfg (-> "dev-peer-config.edn" resource slurp read-string)
             peer-config (assoc dev-cfg :onyx/id (:onyx-id dev-env))
             lifecycles (c/build-lifecycles)]
         (u/bind-inputs! lifecycles {:read-segments input})
         (let [job {:workflow c/workflow
-                   :catalog c/catalog
+                   :catalog catalog
                    :lifecycles lifecycles
                    :task-scheduler :onyx.task-scheduler/balanced}]
           (onyx.api/submit-job peer-config job)
