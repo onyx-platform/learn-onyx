@@ -5,7 +5,8 @@
             [lambdajam.launcher.dev-system :refer [onyx-dev-env]]
             [lambdajam.challenge-1-0 :as c]
             [lambdajam.workshop-utils :as u]
-            [onyx.api]))
+            [onyx.api]
+            [user]))
 
 ;; This level is all about workflows. Workflows define the graph of all
 ;; possible routes where data can flow through your job. You can think
@@ -56,19 +57,20 @@
    {:n 100}])
 
 (deftest test-level-1-challenge-0
-  (let [catalog (c/build-catalog)
-        dev-env (component/start (onyx-dev-env (u/n-peers catalog c/workflow)))]
-    (try 
-      (let [dev-cfg (-> "dev-peer-config.edn" resource slurp read-string)
-            peer-config (assoc dev-cfg :onyx/id (:onyx-id dev-env))
-            lifecycles (c/build-lifecycles)]
-        (u/bind-inputs! lifecycles {:read-segments input})
-        (let [job {:workflow c/workflow
-                   :catalog catalog
-                   :lifecycles lifecycles
-                   :task-scheduler :onyx.task-scheduler/balanced}]
-          (onyx.api/submit-job peer-config job)
-          (let [[results] (u/collect-outputs! lifecycles [:write-segments])]
-            (u/segments-equal? expected-output results))))
-      (finally
-       (component/stop dev-env)))))
+  (try
+    (let [catalog (c/build-catalog)
+          dev-cfg (-> "dev-peer-config.edn" resource slurp read-string)
+          lifecycles (c/build-lifecycles)]
+      (user/go (u/n-peers catalog c/workflow))
+      (u/bind-inputs! lifecycles {:read-segments input})
+      (let [peer-config (assoc dev-cfg :onyx/id (:onyx-id user/system))
+            job {:workflow c/workflow
+                 :catalog catalog
+                 :lifecycles lifecycles
+                 :task-scheduler :onyx.task-scheduler/balanced}]
+;;                  (onyx.api/submit-job peer-config job)
+        (let [[results] (u/collect-outputs! lifecycles [:write-segments])]
+          (u/segments-equal? expected-output results))))
+    (finally
+     (Thread/interrupted)
+     (user/stop))))
