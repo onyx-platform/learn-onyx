@@ -68,9 +68,10 @@
                  :catalog catalog
                  :lifecycles lifecycles
                  :task-scheduler :onyx.task-scheduler/balanced}]
-;;                  (onyx.api/submit-job peer-config job)
+        (onyx.api/submit-job peer-config job)
         (let [[results] (u/collect-outputs! lifecycles [:write-segments])]
           (u/segments-equal? expected-output results))))
+    (catch InterruptedException e
+      (Thread/interrupted))
     (finally
-     (Thread/interrupted)
      (user/stop))))

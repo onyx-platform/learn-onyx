@@ -19,22 +19,24 @@
    {:sentence "Sample inputs are easy to fabricate"}])
 
 (deftest test-level-0-challenge-0
-  (let [catalog (c/build-catalog)
-        dev-env (component/start (onyx-dev-env (u/n-peers catalog c/workflow)))]
-    (try 
-      (let [dev-cfg (-> "dev-peer-config.edn" resource slurp read-string)
-            peer-config (assoc dev-cfg :onyx/id (:onyx-id dev-env))
-            lifecycles (c/build-lifecycles)]
-        (u/bind-inputs! lifecycles {:read-segments input})
-        (let [job {:workflow c/workflow
-                   :catalog catalog
-                   :lifecycles lifecycles
-                   :task-scheduler :onyx.task-scheduler/balanced}]
-          (onyx.api/submit-job peer-config job)
-          (let [[results] (u/collect-outputs! lifecycles [:write-segments])]
-            (println "==== Start job output ====")
-            (clojure.pprint/pprint results)
-            (println "==== End job output ====")
-            (u/segments-equal? input results))))
-      (finally
-       (component/stop dev-env)))))
+  (try
+    (let [catalog (c/build-catalog)
+          dev-cfg (-> "dev-peer-config.edn" resource slurp read-string)
+          lifecycles (c/build-lifecycles)]
+      (user/go (u/n-peers catalog c/workflow))
+      (u/bind-inputs! lifecycles {:read-segments input})
+      (let [peer-config (assoc dev-cfg :onyx/id (:onyx-id user/system))
+            job {:workflow c/workflow
+                 :catalog catalog
+                 :lifecycles lifecycles
+                 :task-scheduler :onyx.task-scheduler/balanced}]
+        (onyx.api/submit-job peer-config job)
+        (let [[results] (u/collect-outputs! lifecycles [:write-segments])]
+          (println "==== Start job output ====")
+          (clojure.pprint/pprint results)
+          (println "==== End job output ====")
+          (u/segments-equal? input results))))
+    (catch InterruptedException e
+      (Thread/interrupted))
+    (finally
+     (user/stop))))

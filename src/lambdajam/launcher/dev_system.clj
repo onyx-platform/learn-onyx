@@ -5,6 +5,24 @@
             [onyx.plugin.core-async]
             [onyx.api]))
 
+(defn try-start-env [env-config]
+  (try
+    (onyx.api/start-env env-config)
+    (catch Throwable e
+      nil)))
+
+(defn try-start-group [peer-config]
+  (try
+    (onyx.api/start-peer-group peer-config)
+    (catch Throwable e
+      nil)))
+
+(defn try-start-peers [n-peers peer-group]
+  (try
+    (onyx.api/start-peers n-peers peer-group)
+    (catch Throwable e
+      nil)))
+
 (defrecord OnyxDevEnv [n-peers]
   component/Lifecycle
 
@@ -15,9 +33,9 @@
                             :onyx/id onyx-id)
           peer-config (assoc (-> "dev-peer-config.edn"
                                  resource slurp read-string) :onyx/id onyx-id)
-          env (onyx.api/start-env env-config)
-          peer-group (onyx.api/start-peer-group peer-config)
-          peers (onyx.api/start-peers n-peers peer-group)]
+          env (try-start-env env-config)
+          peer-group (try-start-group peer-config)
+          peers (try-start-peers n-peers peer-group)]
       (assoc component :env env :peer-group peer-group
              :peers peers :onyx-id onyx-id)))
 
@@ -27,8 +45,11 @@
     (doseq [v-peer (:peers component)]
       (onyx.api/shutdown-peer v-peer))
 
-    (onyx.api/shutdown-peer-group (:peer-group component))
-    (onyx.api/shutdown-env (:env component))
+    (when-let [pg (:peer-group component)]
+      (onyx.api/shutdown-peer-group pg))
+
+    (when-let [env (:env component)]
+      (onyx.api/shutdown-env env))
 
     (assoc component :env nil :peer-group nil :peers nil)))
 
