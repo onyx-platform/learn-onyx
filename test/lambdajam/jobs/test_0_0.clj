@@ -9,6 +9,7 @@
 
 ;; This is a basic, already-completed example to test that Onyx is working
 ;; okay on your machine. Try it with:
+;;
 ;; `lein test lambdajam.jobs.level-0.test-0-0`
 
 (def input
