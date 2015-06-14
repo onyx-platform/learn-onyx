@@ -39,6 +39,10 @@
 
 (def k-expected-output (concat a-input b-input))
 
+;; Notice that all the elements from input C are expected three times.
+;; This is because task C connects to E, which connects to G, H, and I.
+;; All the segments from E are sent to G, H, and I, and ultimately merged
+;; back together in L.
 (def l-expected-output
   (concat a-input b-input c-input c-input c-input))
 
