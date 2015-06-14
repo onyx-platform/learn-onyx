@@ -5,8 +5,7 @@
             [lambdajam.launcher.dev-system :refer [onyx-dev-env]]
             [lambdajam.challenge-1-1 :as c]
             [lambdajam.workshop-utils :as u]
-            [onyx.api]
-            [user]))
+            [onyx.api]))
 
 ;; This challenge builds on the previous challenge - you'll implement
 ;; your first workflow. Below is a pictorial description of what

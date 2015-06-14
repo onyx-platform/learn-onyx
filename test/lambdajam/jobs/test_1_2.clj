@@ -5,8 +5,7 @@
             [lambdajam.launcher.dev-system :refer [onyx-dev-env]]
             [lambdajam.challenge-1-2 :as c]
             [lambdajam.workshop-utils :as u]
-            [onyx.api]
-            [user]))
+            [onyx.api]))
 
 ;; Workflows are direct, acyclic graphs - meaning they can split
 ;; and merge. Try modeling the workflow below. The task "cube-n"
@@ -59,7 +58,7 @@
    {:n 3695}
    {:n 3845}])
 
-(deftest test-level-1-challenge-1
+(deftest test-level-1-challenge-2
   (try
     (let [catalog (c/build-catalog)
           dev-cfg (-> "dev-peer-config.edn" resource slurp read-string)

@@ -5,8 +5,7 @@
             [lambdajam.launcher.dev-system :refer [onyx-dev-env]]
             [lambdajam.challenge-1-0 :as c]
             [lambdajam.workshop-utils :as u]
-            [onyx.api]
-            [user]))
+            [onyx.api]))
 
 ;; This level is all about workflows. Workflows define the graph of all
 ;; possible routes where data can flow through your job. You can think
