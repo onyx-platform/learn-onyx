@@ -1,8 +1,6 @@
 (ns lambdajam.challenge-1-0
   (:require [lambdajam.workshop-utils :as u]))
 
-(def batch-size 20)
-
 ;;; Workflows ;;;
 
 (def workflow
