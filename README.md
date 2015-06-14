@@ -22,7 +22,6 @@ This repository contains a set of tests that can be invoked with `lein test`. Th
   - Challenge 2: Parameterize a function through the catalog
   - Challenge 3: Implement a stateful grouping task
   - Challenge 4: Bound the number of peers executing a task
-  - Challenge 5: Trigger a function not-found error
 - Level 3: Functions
 - Level 4: Flow Conditions
 - Level 5: Lifecycles
