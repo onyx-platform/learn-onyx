@@ -43,13 +43,19 @@
     (println "Stopping Onyx development environment")
 
     (doseq [v-peer (:peers component)]
-      (onyx.api/shutdown-peer v-peer))
+      (try
+        (onyx.api/shutdown-peer v-peer)
+        (catch InterruptedException e)))
 
     (when-let [pg (:peer-group component)]
-      (onyx.api/shutdown-peer-group pg))
+      (try
+        (onyx.api/shutdown-peer-group pg)
+        (catch InterruptedException e)))
 
     (when-let [env (:env component)]
-      (onyx.api/shutdown-env env))
+      (try
+        (onyx.api/shutdown-env env)
+        (catch InterruptedException e)))
 
     (assoc component :env nil :peer-group nil :peers nil)))
 
