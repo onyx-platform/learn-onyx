@@ -11,11 +11,21 @@ This repository contains a set of tests that can be invoked with `lein test`. Th
 - Level 0: Sanity Check
   - Challenge 0: Makes sure your environment is working okay
 - Level 1: Workflows
-  - Challenge 0: A minimal workflow
+  - Challenge 0: Observe a minimal workflow
   - Challenge 1: Implement a linear workflow
   - Challenge 2: Implement a branched workflow
   - Challenge 3: Implement a larger DAG workflow
   - Challenge 4: Trigger a workflow task not-found error
+- Level 2: Catalogs
+  - Challenge 0: Observe a minimal catalog
+  - Challenge 1: Implement a catalog entry for a function
+  - Challenge 2: Parameterize a function through the catalog
+  - Challenge 3: Implement a stateful grouping task
+  - Challenge 4: Bound the number of peers executing a task
+  - Challenge 5: Trigger a function not-found error
+- Level 3: Functions
+- Level 4: Flow Conditions
+- Level 5: Lifecycles
 
 ## License
 
