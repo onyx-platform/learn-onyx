@@ -35,11 +35,7 @@
 ;;
 ;; `lein test lambdajam.jobs.test-1-2`
 
-
 (def input (mapv (fn [n] {:n n}) (range 10)))
-
-
-(mapv (fn [n] (* 5 (+ 40 (* n n n)))) (range 10))
 
 (def expected-output
   [{:n 50}
