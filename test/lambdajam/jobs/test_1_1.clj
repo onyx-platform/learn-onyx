@@ -5,8 +5,13 @@
             [lambdajam.launcher.dev-system :refer [onyx-dev-env]]
             [lambdajam.challenge-1-1 :as c]
             [lambdajam.workshop-utils :as u]
-            [onyx.api]))
+            [onyx.api]
+            [user]))
 
+;; This challenge builds on the previous challenge - you'll implement
+;; your first workflow. Below is a pictorial description of what
+;; the workflow should look like:
+;;
 ;;    read-segments
 ;;         |
 ;;         v
@@ -20,6 +25,18 @@
 ;;         |
 ;;         v
 ;;    write-segments
+;;
+;; Open the src file for this challenge and fill in the workflow.
+;; The workflow is left as an undefined var. Add the appropriate data
+;; structure.
+;;
+;; Look for the "<<< BEGIN FILL ME IN >>>" and "<<< END FILL ME IN >>>"
+;; comments to start your work.
+;;
+;; Try it with:
+;;
+;; `lein test lambdajam.jobs.test-1-0`
+
 
 (def input (mapv (fn [n] {:n n}) (range 10)))
 

@@ -5,7 +5,8 @@
             [lambdajam.launcher.dev-system :refer [onyx-dev-env]]
             [lambdajam.challenge-0-0 :as c]
             [lambdajam.workshop-utils :as u]
-            [onyx.api]))
+            [onyx.api]
+            [user]))
 
 ;; This is a basic, already-completed example to test that Onyx is working
 ;; okay on your machine. Try it with:
