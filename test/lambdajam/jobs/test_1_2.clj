@@ -1,55 +1,67 @@
-(ns lambdajam.jobs.test-1-1
+(ns lambdajam.jobs.test-1-2
   (:require [clojure.test :refer [deftest is]]
             [clojure.java.io :refer [resource]]
             [com.stuartsierra.component :as component]
             [lambdajam.launcher.dev-system :refer [onyx-dev-env]]
-            [lambdajam.challenge-1-1 :as c]
+            [lambdajam.challenge-1-2 :as c]
             [lambdajam.workshop-utils :as u]
             [onyx.api]
             [user]))
 
-;; This challenge builds on the previous challenge - you'll implement
-;; your first workflow. Below is a pictorial description of what
-;; the workflow should look like:
+;; Workflows are direct, acyclic graphs - meaning they can split
+;; and merge. Try modeling the workflow below. The task "cube-n"
+;; splits its output into two streams - into tasks "add-ten", and
+;; "add-forty". Both tasks get *all* the segments produced by cube-n.
+;; Their results are sent to "multiply-by-5".
 ;;
 ;;    read-segments
 ;;         |
 ;;         v
 ;;       cube-n
-;;         |
-;;         v
-;;      add-ten
-;;         |
+;;      /      \
+;;     |       |
+;;     v       v
+;; add-ten   add-forty
+;;     |       |
+;;      \     /
 ;;         v
 ;;    multiply-by-5
 ;;         |
 ;;         v
 ;;    write-segments
 ;;
-;; Open the corresponding src file for this challenge and fill in the workflow.
-;; The workflow is left as an undefined var. Add the appropriate data
-;; structure.
-;;
-;; Look for the "<<< BEGIN FILL ME IN >>>" and "<<< END FILL ME IN >>>"
-;; comments to start your work.
 ;;
 ;; Try it with:
 ;;
-;; `lein test lambdajam.jobs.test-1-1`
+;; `lein test lambdajam.jobs.test-1-2`
+
 
 (def input (mapv (fn [n] {:n n}) (range 10)))
+
+
+(mapv (fn [n] (* 5 (+ 40 (* n n n)))) (range 10))
 
 (def expected-output
   [{:n 50}
    {:n 55}
    {:n 90}
    {:n 185}
+   {:n 200}
+   {:n 205}
+   {:n 240}
+   {:n 335}
    {:n 370}
+   {:n 520}
    {:n 675}
+   {:n 825}
    {:n 1130}
+   {:n 1280}
    {:n 1765}
+   {:n 1915}
    {:n 2610}
-   {:n 3695}])
+   {:n 2760}
+   {:n 3695}
+   {:n 3845}])
 
 (deftest test-level-1-challenge-1
   (try
