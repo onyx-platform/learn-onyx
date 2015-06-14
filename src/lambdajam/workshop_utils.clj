@@ -39,10 +39,11 @@
    (fn [id] (chan (sliding-buffer output-channel-capacity)))))
 
 (defn channel-id-for [lifecycles task-name]
-  (:core.async/id
-   (->> lifecycles
-        (filter #(= task-name (:lifecycle/task %)))
-        (first))))
+  (->> lifecycles
+       (filter #(= task-name (:lifecycle/task %)))
+       (map :core.async/id)
+       (remove nil?)
+       (first)))
 
 (defn bind-inputs! [lifecycles mapping]
   (doseq [[task segments] mapping]

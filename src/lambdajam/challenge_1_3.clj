@@ -144,54 +144,54 @@
 (defn build-lifecycles []
   [{:lifecycle/task :A
     :lifecycle/calls :lambdajam.challenge-1-3/reader-lifecycle
+    :core.async/id (java.util.UUID/randomUUID)
     :onyx/doc "Injects the core.async reader channel"}
 
    {:lifecycle/task :A
     :lifecycle/calls :onyx.plugin.core-async/reader-calls
-    :core.async/id (java.util.UUID/randomUUID)
     :onyx/doc "core.async plugin base lifecycle"}
 
    {:lifecycle/task :B
     :lifecycle/calls :lambdajam.challenge-1-3/reader-lifecycle
+    :core.async/id (java.util.UUID/randomUUID)
     :onyx/doc "Injects the core.async reader channel"}
 
    {:lifecycle/task :B
     :lifecycle/calls :onyx.plugin.core-async/reader-calls
-    :core.async/id (java.util.UUID/randomUUID)
     :onyx/doc "core.async plugin base lifecycle"}
 
    {:lifecycle/task :C
     :lifecycle/calls :lambdajam.challenge-1-3/reader-lifecycle
+    :core.async/id (java.util.UUID/randomUUID)
     :onyx/doc "Injects the core.async reader channel"}
 
    {:lifecycle/task :C
     :lifecycle/calls :onyx.plugin.core-async/reader-calls
-    :core.async/id (java.util.UUID/randomUUID)
     :onyx/doc "core.async plugin base lifecycle"}
 
    {:lifecycle/task :J
     :lifecycle/calls :lambdajam.challenge-1-3/writer-lifecycle
+    :core.async/id (java.util.UUID/randomUUID)
     :onyx/doc "Injects the core.async writer channel"}
 
    {:lifecycle/task :J
     :lifecycle/calls :onyx.plugin.core-async/writer-calls
-    :core.async/id (java.util.UUID/randomUUID)
     :onyx/doc "core.async plugin base lifecycle"}
 
    {:lifecycle/task :K
     :lifecycle/calls :lambdajam.challenge-1-3/writer-lifecycle
+    :core.async/id (java.util.UUID/randomUUID)
     :onyx/doc "Injects the core.async writer channel"}
 
    {:lifecycle/task :K
     :lifecycle/calls :onyx.plugin.core-async/writer-calls
-    :core.async/id (java.util.UUID/randomUUID)
     :onyx/doc "core.async plugin base lifecycle"}
 
    {:lifecycle/task :L
     :lifecycle/calls :lambdajam.challenge-1-3/writer-lifecycle
+    :core.async/id (java.util.UUID/randomUUID)
     :onyx/doc "Injects the core.async writer channel"}
 
    {:lifecycle/task :L
     :lifecycle/calls :onyx.plugin.core-async/writer-calls
-    :core.async/id (java.util.UUID/randomUUID)
     :onyx/doc "core.async plugin base lifecycle"}])
