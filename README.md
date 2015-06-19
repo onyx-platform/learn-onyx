@@ -28,8 +28,9 @@ This repository contains a set of tests that can be invoked with `lein test`. Th
   - Challenge 2: Write a function that emits multiple segments
   - Challenge 3: Write a catalog entry and parameterized function
   - Challenge 4: Implement a bulk function
-- Level 4: Flow Conditions
-- Level 5: Lifecycles
+- Level 4: Lifecycles
+- Level 5: Flow Conditions
+- Level 6: End to End
 
 ## License
 

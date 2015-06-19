@@ -1,21 +1,20 @@
-(ns lambdajam.jobs.test-3-1
+(ns lambdajam.jobs.test-3-3
   (:require [clojure.test :refer [deftest is]]
             [clojure.java.io :refer [resource]]
             [com.stuartsierra.component :as component]
             [lambdajam.launcher.dev-system :refer [onyx-dev-env]]
-            [lambdajam.challenge-3-1 :as c]
+            [lambdajam.challenge-3-3 :as c]
             [lambdajam.workshop-utils :as u]
             [onyx.api]))
 
-;; Now that you know the rules of functions, let's implement some
-;; functions for a workflow. This Onyx job will have 3 function tasks.
-;; You'll need to implement the functions to pass the test. Read
-;; the docstrings on the corresponding catalog entries for the
-;; functions purposes.
+;; In level 2, we explored how functions can take parameters by
+;; changing the catalog entry. Now let's use what we learned to
+;; write a catalog entry and parameterized function from scratch.
+;; There are two sections of the source file for you to work on.
 ;;
 ;; Try it with:
 ;;
-;; `lein test lambdajam.jobs.test-3-1`
+;; `lein test lambdajam.jobs.test-3-3`
 ;;
 
 (def input
@@ -30,17 +29,17 @@
    {:name "Tina"}])
 
 (def expected-output
-  [{:name "M | I | K | E"}
-   {:name "L | U | C | A | S"}
-   {:name "T | I | M"}
-   {:name "A | A | R | O | N"}
-   {:name "L | A | U | R | E | N"}
-   {:name "B | O | B"}
-   {:name "F | R | E | D"}
-   {:name "L | I | S | A"}
-   {:name "T | I | N | A"}])
+  [{:name "~Mike?"}
+   {:name "~Lucas?"}
+   {:name "~Tim?"}
+   {:name "~Aaron?"}
+   {:name "~Lauren?"}
+   {:name "~Bob?"}
+   {:name "~Fred?"}
+   {:name "~Lisa?"}
+   {:name "~Tina?"}])
 
-(deftest test-level-3-challenge-0
+(deftest test-level-3-challenge-3
   (try
     (let [catalog (c/build-catalog)
           dev-cfg (-> "dev-peer-config.edn" resource slurp read-string)
