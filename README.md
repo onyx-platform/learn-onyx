@@ -20,7 +20,7 @@ This repository contains a set of tests that can be invoked with `lein test`. Th
   - Challenge 0: Observe a minimal catalog
   - Challenge 1: Implement a catalog entry for a function
   - Challenge 2: Parameterize a function through the catalog
-  - Challenge 3: Implement a stateful grouping task
+  - Challenge 3: Implement a grouping task
   - Challenge 4: Bound the number of peers executing a task
 - Level 3: Functions
   - Challenge 0: Observe a basic function
@@ -29,6 +29,10 @@ This repository contains a set of tests that can be invoked with `lein test`. Th
   - Challenge 3: Write a catalog entry and parameterized function
   - Challenge 4: Implement a bulk function
 - Level 4: Lifecycles
+  - Challenge 0: Observe a lifecycle example
+  - Challenge 1: Use lifecycles for logging
+  - Challenge 2: Accrue state
+  - Challenge 3: Implement basic task metrics
 - Level 5: Flow Conditions
 - Level 6: End to End
 

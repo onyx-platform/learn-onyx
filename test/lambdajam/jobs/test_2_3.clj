@@ -9,14 +9,15 @@
 
 ;; We're starting to get used to using the catalog as a point of
 ;; knob-tuning on functions. What else can we use the catalog for?
-;; Here's we'll explore stateful grouping of functions driven by
+;; Here's we'll explore grouping of segments driven by
 ;; catalog-entry parameters.
 ;;
-;; In a stateful grouping, we apply a function to every segment. This
+;; In a grouped task, we apply a function to every segment. This
 ;; function returns some value. All segments that return that same value
 ;; will always be sent to the same peer. This gives you a point of leverage
 ;; to "see" all the segments that have a particular property on the same peer
-;; This lets you do things like create local, in-memory aggregations.
+;; This lets you do things like create local, in-memory aggregations, or
+;; otherwise presumably stateful things.
 ;;
 ;; To turn a function into a grouped function, add :onyx/group-by-key to the
 ;; catalog entry and point it to a keyword that will be present in all segments.
