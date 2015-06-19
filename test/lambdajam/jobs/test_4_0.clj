@@ -29,7 +29,7 @@
 
 (def expected-output (map (fn [n] {:n (* 2 n)}) (range 10)))
 
-(deftest test-level-3-challenge-0
+(deftest test-level-4-challenge-0
   (try
     (let [catalog (c/build-catalog)
           dev-cfg (-> "dev-peer-config.edn" resource slurp read-string)
