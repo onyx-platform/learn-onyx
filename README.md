@@ -31,8 +31,8 @@ This repository contains a set of tests that can be invoked with `lein test`. Th
 - Level 4: Lifecycles
   - Challenge 0: Observe a lifecycle example
   - Challenge 1: Use lifecycles for logging
-  - Challenge 2: Accrue state
-  - Challenge 3: Implement basic task metrics
+  - Challenge 2: Compute an aggregate
+  - Challenge 3: Parameterize a function with state
 - Level 5: Flow Conditions
 - Level 6: End to End
 
