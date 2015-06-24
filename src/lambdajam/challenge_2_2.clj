@@ -24,24 +24,6 @@
 
       ;; <<< BEGIN FILL ME IN >>>
 
-      {:onyx/name :times
-       :onyx/fn :lambdajam.challenge-2-2/times
-       :onyx/type :function
-       :times/n 3
-       :onyx/params [:times/n]
-       :onyx/batch-size batch-size
-       :onyx/batch-timeout batch-timeout
-       :onyx/doc "Multiplies :n in the segment by 3"}
-
-      {:onyx/name :plus
-       :onyx/fn :lambdajam.challenge-2-2/plus
-       :onyx/type :function
-       :plus/n 50
-       :onyx/params [:plus/n]
-       :onyx/batch-size batch-size
-       :onyx/batch-timeout batch-timeout
-       :onyx/doc "Multiplies :n in the segment by 3"}
-
       ;; <<< END FILL ME IN >>>
 
       {:onyx/name :write-segments

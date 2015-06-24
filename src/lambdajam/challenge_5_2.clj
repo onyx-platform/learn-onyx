@@ -74,17 +74,6 @@
 
 ;; <<< BEGIN FILL ME IN >>>
 
-(defn admin? [event old-segment new-segment all-new-segments]
-  (= (:status new-segment) :admin))
-
-(defn user? [event old-segment new-segment all-new-segments]
-  (= (:status new-segment) :user))
-
-(def flow-conditions
-  [{:flow/from :identity
-    :flow/to [:write-segments]
-    :flow/predicate [:or
-                     :lambdajam.challenge-5-2/admin?
-                     :lambdajam.challenge-5-2/user?]}])
+(def flow-conditions)
 
 ;; <<< END FILL ME IN >>>
