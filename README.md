@@ -40,7 +40,7 @@ Heads up! Some of these tests capture standard out using `clojure.core/with-out-
   - Challenge 1: Use flow conditions for basic routing
   - Challenge 2: Create a composite flow conditions predicate
   - Challenge 3: Write an exception handler with flow conditions
-  - Challenge 4: Retry failing segments with flow conditions
+  - Challenge 4: Use key exclusion
 
 ## License
 
