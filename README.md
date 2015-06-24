@@ -36,6 +36,11 @@ Heads up! Some of these tests capture standard out using `clojure.core/with-out-
   - Challenge 2: Compute an aggregate
   - Challenge 3: Parameterize a function with state
 - Level 5: Flow Conditions
+  - Challenge 0: Observe a flow conditions example
+  - Challenge 1: Use flow conditions for basic routing
+  - Challenge 2: Create a composite flow conditions predicate
+  - Challenge 3: Write an exception handler with flow conditions
+  - Challenge 4: Retry failing segments with flow conditions
 - Level 6: End to End
 
 ## License
