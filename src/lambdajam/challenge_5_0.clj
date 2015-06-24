@@ -96,6 +96,8 @@
 
 ;;; <<< BEGIN READ ME >>>
 
+;;; Flow conditions ;;;
+
 ;; If a workflow data structure represents the nodes in the
 ;; computational graph (with implicit edges to all immediate
 ;; nodes), then flow conditions are the explicit edges. We should
