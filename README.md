@@ -41,7 +41,6 @@ Heads up! Some of these tests capture standard out using `clojure.core/with-out-
   - Challenge 2: Create a composite flow conditions predicate
   - Challenge 3: Write an exception handler with flow conditions
   - Challenge 4: Retry failing segments with flow conditions
-- Level 6: End to End
 
 ## License
 
