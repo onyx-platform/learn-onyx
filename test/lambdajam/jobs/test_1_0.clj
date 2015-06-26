@@ -11,6 +11,9 @@
 ;; possible routes where data can flow through your job. You can think
 ;; of this as isolating the "structure" of your computation.
 ;;
+;; Onyx's information model is documented in the user guide:
+;; http://onyx-platform.gitbooks.io/onyx/content/doc/user-guide/information-model.html
+;;
 ;; This challenge is an already-working example to get your started.
 ;; Try it with:
 ;;

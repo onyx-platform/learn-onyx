@@ -7,12 +7,6 @@
 
 (def workflow)
 
-(def workflow
-  [[:read-segments :cube-n]
-   [:cube-n :add-ten]
-   [:add-ten :multiply-by-5]
-   [:multiply-by-5 :write-segments]])
-
 ;;; <<< END FILL ME IN >>>
 
 ;;; Catalogs ;;;

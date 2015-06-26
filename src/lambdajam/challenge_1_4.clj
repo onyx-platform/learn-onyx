@@ -7,10 +7,6 @@
 
 (def workflow)
 
-(def workflow
-  [[:read-segments :this-is-not-a-task]
-   [:this-is-not-a-task :write-segments]])
-
 ;;; <<< END FILL ME IN >>>
 
 ;;; Catalogs ;;;

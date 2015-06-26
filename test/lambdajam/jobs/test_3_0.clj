@@ -12,7 +12,10 @@
 ;; so we'll be quick with this section. We're going to check out
 ;; how to harness a few interesting patterns that relate to concepts
 ;; we learned earlier.
-
+;;
+;; Onyx has a chapter in its user guide dedicated to functions:
+;; http://onyx-platform.gitbooks.io/onyx/content/doc/user-guide/functions.html
+;;
 ;; This challenge is an already-working example. Explore the functions
 ;; and comments in the corresponding source file about the contracts
 ;; that Onyx functions must abide by.

@@ -11,6 +11,10 @@
 ;; Catalogs describe what the tasks of a workflow actually do, and
 ;; how to parameterize them in a functional and non-functional manner.
 ;;
+;; Onyx's information model is documented in the user guide:
+;; http://onyx-platform.gitbooks.io/onyx/content/doc/user-guide/information-model.html
+;;
+;;
 ;; This challenge is an already-working example to get your started.
 ;; It takes a stream of numbers and multplies them by 2.
 ;; Go to the source file and read the comments about the catalog to get

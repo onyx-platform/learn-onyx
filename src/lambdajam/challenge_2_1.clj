@@ -24,20 +24,7 @@
 
       ;; <<< BEGIN FILL ME IN >>>
 
-      {:onyx/name :times-three
-       :onyx/fn :lambdajam.challenge-2-1/times-three
-       :onyx/type :function
-       :onyx/batch-size batch-size
-       :onyx/batch-timeout batch-timeout
-       :onyx/doc "Multiplies :n in the segment by 3"}
-
-      {:onyx/name :plus-fifty
-       :onyx/fn :lambdajam.challenge-2-1/plus-fifty
-       :onyx/type :function
-       :onyx/batch-size batch-size
-       :onyx/batch-timeout batch-timeout
-       :onyx/doc "Multiplies :n in the segment by 3"}
-
+ 
       ;; <<< END FILL ME IN >>>
 
       {:onyx/name :write-segments
