@@ -34,8 +34,8 @@
                  :catalog catalog
                  :lifecycles lifecycles
                  :task-scheduler :onyx.task-scheduler/balanced}]
-        (onyx.api/submit-job peer-config job)))
-    (is (= true false) "Job passed! It should fail!")
+        (onyx.api/submit-job peer-config job)
+        (throw (Error. "The test failed, submit-job completed without an error!"))))
     (catch InterruptedException e
       (Thread/interrupted))
     (catch Exception e
