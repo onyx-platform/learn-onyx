@@ -7,10 +7,15 @@
             [lambdajam.workshop-utils :as u]
             [onyx.api]))
 
-;; This is a basic, already-completed example to test that Onyx is working
+;; This is a basic, already-complete example to test that Onyx is working
 ;; okay on your machine. Try it with:
 ;;
 ;; `lein test lambdajam.jobs.test-0-0`
+;;
+;; You should see some output printed to standard out.
+;; If this is your first time using Onyx, look at the corresponding
+;; source file to get a feel of the parts of an Onyx program.
+;;
 
 (def input
   [{:sentence "Getting started with Onyx is easy"}

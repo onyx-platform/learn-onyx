@@ -13,6 +13,9 @@
 ;; segments to one branch or another in a workflow? Flow conditions are
 ;; a construct that describes how to route segments around your workflow.
 ;;
+;; Onyx has an entire chapter in its user guided dedicated to flow conditions:
+;; http://onyx-platform.gitbooks.io/onyx/content/doc/user-guide/flow-conditions.html
+;;
 ;; This challenge is an already-working example of flow conditions. Read
 ;; the source and get familiar with their basic usage.
 ;;

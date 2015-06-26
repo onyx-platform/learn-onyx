@@ -4,11 +4,21 @@ Onyx workshop materials for the LambdaJam 2015 conference. This workshop assumes
 
 ### How this works
 
-This repository contains a set of tests that can be invoked with `lein test`. The workshop is divided into levels and challenges. Each level is dedicated to a particular Onyx feature, and is meant to focus your attention in one or two points of the code to avoid feeling overwhelmed. Each level has several challenges that you can work through. Every challenge is self contained in its own test (named `test_<level>_<challenge>.clj` and implementation file (named `challenge_<level>_<challenge>`). Every level has a "challenge 0". This challenge is already-working, and is a basic example of how to use the feature under discussion to help you get started. It should be useful as a base for experimentation if you want to start from a known-good state and push outwards into new ideas.
+This repository contains a set of tests that can be invoked with `lein test`. The workshop is divided into levels and challenges. Each level is dedicated to a particular Onyx feature and is meant to focus your attention on one or two points of the code to avoid feeling overwhelmed. Each level has several challenges that you can work through. Every challenge is self contained in its own test (named `test_<level>_<challenge>.clj`) and implementation file (named `challenge_<level>_<challenge>`). Every level has a "challenge 0". This challenge is already working, and serves as a basic example of how to use the feature under discussion to help you get started. It should be useful as a base for experimentation if you want to start from a known-good state and push outward into new ideas.
 
 Heads up! Some of these tests capture standard out using `clojure.core/with-out-str` to make verifying assertions as easy as possible. If you're wondering where your printlns are going, check the test harness for the challenge. Feel free to drop it while you debug.
 
+### Reading
+
+Each file has a moderate amount of comments to frame the discussion. Still, here are some links that will be helpful if you're approaching Onyx from scratch or need more information to help solve a challenge:
+
+- [Basic terminology and concepts](http://onyx-platform.gitbooks.io/onyx/content/doc/user-guide/concepts.html)
+- [Full User Guide](http://onyx-platform.gitbooks.io/onyx/content/)
+- [Examples Repository](https://github.com/onyx-platform/onyx-examples)
+
 ### Guide
+
+Below is the table of contents for the levels and challenges you'll be working through. Feel free to skip around.
 
 - Level 0: Sanity Check
   - Challenge 0: Makes sure your environment is working okay
@@ -41,6 +51,10 @@ Heads up! Some of these tests capture standard out using `clojure.core/with-out-
   - Challenge 2: Create a composite flow conditions predicate
   - Challenge 3: Write an exception handler with flow conditions
   - Challenge 4: Use key exclusion
+
+### Help I'm Stuck!
+
+Have no fear! All of the answers can be found on the `answers` branch of this repository. Check out this branch and run `lein test`. All the tests will pass.
 
 ## License
 
