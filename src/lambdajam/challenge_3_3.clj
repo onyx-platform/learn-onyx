@@ -23,6 +23,16 @@
 
       ;; <<< BEGIN FILL ME IN PART 1 >>>
 
+      {:onyx/name :transform-name
+       :onyx/fn :lambdajam.challenge-3-3/transform-name
+       :name/prefix "~"
+       :name/suffix "?"
+       :onyx/params [:name/prefix :name/suffix]
+       :onyx/type :function
+       :onyx/batch-size batch-size
+       :onyx/batch-timeout batch-timeout
+       :onyx/doc "Adds a prefix and suffix to :name"}
+
       ;; <<< END FILL ME IN PART 1 >>>
 
       {:onyx/name :write-segments
@@ -37,6 +47,9 @@
 ;;; Functions ;;;
 
 ;; <<< BEGIN FILL ME IN PART 2 >>>
+
+(defn transform-name [prefix suffix segment]
+  (update-in segment [:name] #(str prefix % suffix)))
 
 ;; <<< END FILL ME IN  PART 2 >>>
 

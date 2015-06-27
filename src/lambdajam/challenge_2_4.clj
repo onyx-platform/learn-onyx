@@ -23,6 +23,14 @@
 
       ;; <<< BEGIN FILL ME IN >>>
 
+      {:onyx/name :identity
+       :onyx/fn :clojure.core/identity
+       :onyx/type :function
+       :onyx/batch-size batch-size
+       :onyx/batch-timeout batch-timeout
+       :onyx/max-peers 3
+       :onyx/doc "Passes the segment through unchanged"}
+
       ;; <<< END FILL ME IN >>>
 
       {:onyx/name :write-segments

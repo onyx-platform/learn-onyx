@@ -81,6 +81,12 @@
 
 ;; <<< BEGIN FILL ME IN >>>
 
-(def flow-conditions)
+(def flow-conditions
+  [{:flow/from :process-user
+    :flow/to [:write-segments]
+    :flow/short-circuit? true
+    :flow/thrown-exception? true
+    :flow/predicate :lambdajam.challenge-5-3/handle-exception?
+    :flow/post-transform :lambdajam.challenge-5-3/transform-exception}])
 
 ;; <<< END FILL ME IN >>>
