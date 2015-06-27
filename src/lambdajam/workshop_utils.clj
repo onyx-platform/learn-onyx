@@ -1,9 +1,16 @@
 (ns lambdajam.workshop-utils
   (:require [clojure.test :refer [is]]
             [clojure.core.async :refer [chan sliding-buffer >!!]]
+            [clojure.java.io :refer [resource]]
             [onyx.plugin.core-async :refer [take-segments!]]))
 
 ;;;; Test utils ;;;;
+
+(def zk-address "127.0.0.1")
+
+(def zk-port 2188)
+
+(def zk-str (str zk-address ":" zk-port))
 
 (defn only [coll]
   (assert (not (next coll)))
@@ -35,6 +42,17 @@
   (is (= (into #{} expected) (into #{} (remove (partial = :done) actual))))
   (is (= :done (last actual)))
   (is (= (dec (count actual)) (count expected))))
+
+(defn load-peer-config [onyx-id]
+  (assoc (-> "dev-peer-config.edn" resource slurp read-string)
+    :onyx/id onyx-id
+    :zookeeper/address zk-str))
+
+(defn load-env-config [onyx-id]
+  (assoc (-> "env-config.edn" resource slurp read-string)
+    :onyx/id onyx-id
+    :zookeeper/address zk-str
+    :zookeeper.server/port zk-port))
 
 ;;;; Lifecycles utils ;;;;
 

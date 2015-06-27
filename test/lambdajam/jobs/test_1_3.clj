@@ -49,11 +49,10 @@
 (deftest test-level-1-challenge-3
   (try
     (let [catalog (c/build-catalog)
-          dev-cfg (-> "dev-peer-config.edn" resource slurp read-string)
           lifecycles (c/build-lifecycles)]
       (user/go (u/n-peers catalog c/workflow))
       (u/bind-inputs! lifecycles {:A a-input :B b-input :C c-input})
-      (let [peer-config (assoc dev-cfg :onyx/id (:onyx-id user/system))
+      (let [peer-config (u/load-peer-config (:onyx-id user/system))
             job {:workflow c/workflow
                  :catalog catalog
                  :lifecycles lifecycles
