@@ -39,6 +39,6 @@
     (catch InterruptedException e
       (Thread/interrupted))
     (catch Exception e
-      (is (= true true) "Job submission threw an exception."))
+      (is true "Job submission threw an exception."))
     (finally
      (user/stop))))
