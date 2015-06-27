@@ -35,10 +35,10 @@
                  :lifecycles lifecycles
                  :task-scheduler :onyx.task-scheduler/balanced}]
         (onyx.api/submit-job peer-config job)
-        (throw (ex-info "The test failed, submit-job completed without an error!" {}))))
+        (throw (Error. "The test failed, submit-job completed without an error!"))))
     (catch InterruptedException e
       (Thread/interrupted))
     (catch Exception e
-      (is (= true true) "Job submission threw an exception."))
+      (is true "Job submission threw an exception."))
     (finally
      (user/stop))))

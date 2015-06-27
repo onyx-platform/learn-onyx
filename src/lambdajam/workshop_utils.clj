@@ -1,10 +1,22 @@
 (ns lambdajam.workshop-utils
   (:require [clojure.test :refer [is]]
             [clojure.core.async :refer [chan sliding-buffer >!!]]
-            [onyx.plugin.core-async :refer [take-segments!]]
-            [onyx.static.planning :refer [find-task]]))
+            [onyx.plugin.core-async :refer [take-segments!]]))
 
 ;;;; Test utils ;;;;
+
+(defn only [coll]
+  (assert (not (next coll)))
+  (if-let [result (first coll)]
+    result
+    (assert false)))
+
+(defn find-task [catalog task-name]
+  (let [matches (filter #(= task-name (:onyx/name %)) catalog)]
+    (when-not (seq matches)
+      (throw (ex-info (format "Couldn't find task %s in catalog" task-name)
+                      {:catalog catalog :task-name task-name})))
+    (first matches)))
 
 (defn n-peers
   "Takes a workflow and catalog, returns the minimum number of peers

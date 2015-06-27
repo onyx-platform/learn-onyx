@@ -1,3 +1,1 @@
-{:zookeeper/address "127.0.0.1:2188"
- :zookeeper/server? true
- :zookeeper.server/port 2188}
+{:zookeeper/server? true}

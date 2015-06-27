@@ -23,6 +23,12 @@
     (catch Throwable e
       nil)))
 
+(def zk-address "127.0.0.1")
+
+(def zk-port 2188)
+
+(def zk-str (str zk-address ":" zk-port))
+
 (defrecord OnyxDevEnv [n-peers]
   component/Lifecycle
 
@@ -30,9 +36,13 @@
     (println "Starting Onyx development environment")
     (let [onyx-id (java.util.UUID/randomUUID)
           env-config (assoc (-> "env-config.edn" resource slurp read-string)
-                            :onyx/id onyx-id)
+                       :onyx/id onyx-id
+                       :zookeeper/address zk-str
+                       :zookeeper.server/port zk-port)
           peer-config (assoc (-> "dev-peer-config.edn"
-                                 resource slurp read-string) :onyx/id onyx-id)
+                                 resource slurp read-string)
+                        :onyx/id onyx-id
+                        :zookeeper/address zk-str)
           env (try-start-env env-config)
           peer-group (try-start-group peer-config)
           peers (try-start-peers n-peers peer-group)]

@@ -49,6 +49,6 @@
 
 ;; <<< BEGIN FILL ME IN >>>
 
-(def lifecycles)
+(defn build-lifecycles [])
 
 ;; <<< END FILL ME IN >>>
