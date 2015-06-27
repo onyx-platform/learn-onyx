@@ -12,6 +12,7 @@ Onyx workshop materials for the LambdaJam 2015 conference. This workshop assumes
 - Onyx outputs its log messages to `onyx.log` in this project's root directory. Follow it with `tail -F onyx.log`.
 - Exception messages printed to the log are also printed to standard out for convenience.
 - All the answers can be found on the `answers` branch of this repository. Check it out and run `lein test`. All the tests should pass.
+- This workshop often leaves vars that need to be filled in with values unbound. If you see an exception complaining about an Unbound Var, track it down and fill in the implementation.
 
 ### How to work on a challenge
 
