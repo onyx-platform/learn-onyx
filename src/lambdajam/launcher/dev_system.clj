@@ -2,6 +2,7 @@
   (:require [clojure.core.async :refer [chan <!!]]
             [clojure.java.io :refer [resource]]
             [com.stuartsierra.component :as component]
+            [lambdajam.workshop-utils :as u]
             [onyx.plugin.core-async]
             [onyx.api]))
 
@@ -23,26 +24,14 @@
     (catch Throwable e
       nil)))
 
-(def zk-address "127.0.0.1")
-
-(def zk-port 2188)
-
-(def zk-str (str zk-address ":" zk-port))
-
 (defrecord OnyxDevEnv [n-peers]
   component/Lifecycle
 
   (start [component]
     (println "Starting Onyx development environment")
     (let [onyx-id (java.util.UUID/randomUUID)
-          env-config (assoc (-> "env-config.edn" resource slurp read-string)
-                       :onyx/id onyx-id
-                       :zookeeper/address zk-str
-                       :zookeeper.server/port zk-port)
-          peer-config (assoc (-> "dev-peer-config.edn"
-                                 resource slurp read-string)
-                        :onyx/id onyx-id
-                        :zookeeper/address zk-str)
+          env-config (u/load-env-config onyx-id)
+          peer-config (u/load-peer-config onyx-id)
           env (try-start-env env-config)
           peer-group (try-start-group peer-config)
           peers (try-start-peers n-peers peer-group)]

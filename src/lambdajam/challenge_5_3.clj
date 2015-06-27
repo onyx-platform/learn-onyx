@@ -81,6 +81,12 @@
 
 ;; <<< BEGIN FILL ME IN >>>
 
+(defn handle-exception? [event old e all-new]
+  (= (:type (ex-data e)) :guest))
+
+(defn transform-exception [event e]
+    (assoc (:segment (ex-data e)) :error "Insufficient access level"))
+
 (def flow-conditions
   [{:flow/from :process-user
     :flow/to [:write-segments]

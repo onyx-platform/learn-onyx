@@ -56,7 +56,8 @@ Each file has a moderate amount of comments to frame the discussion. Still, here
 
 ### Gotchas
 
-- Some of the tests capture standard out using `clojure.core/with-out-str` to make verifying assertions as easy as possible. If you're wondering where your printlns are going, check the test harness for the challenge. Feel free to drop it while you debug.
+- Some of the tests capture standard out using `clojure.core/with-out-str` to make verifying assertions as easy as possible. If you're wondering where your printlns are going, check the test harness for the challenge. Feel free to drop it while you debug. 
+- If your environment starts and then hangs on the Onyx log line `INFO [onyx.log.zookeeper] - Starting ZooKeeper server`, your ZooKeeper port is in use. Switch the port to an unused port in `lambdajam.workshop-utils/zk-port`.
 
 ### Guide
 

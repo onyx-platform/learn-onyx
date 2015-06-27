@@ -25,11 +25,10 @@
 (deftest test-level-1-challenge-4
   (try
     (let [catalog (c/build-catalog)
-          dev-cfg (-> "dev-peer-config.edn" resource slurp read-string)
           lifecycles (c/build-lifecycles)]
       (user/go 3)
       (u/bind-inputs! lifecycles {:read-segments input})
-      (let [peer-config (assoc dev-cfg :onyx/id (:onyx-id user/system))
+      (let [peer-config (u/load-peer-config (:onyx-id user/system))
             job {:workflow c/workflow
                  :catalog catalog
                  :lifecycles lifecycles
@@ -39,6 +38,7 @@
     (catch InterruptedException e
       (Thread/interrupted))
     (catch Exception e
+      (println "Test was successful!")
       (is true "Job submission threw an exception."))
     (finally
      (user/stop))))
