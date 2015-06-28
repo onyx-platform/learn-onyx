@@ -11,7 +11,7 @@
 ;; are getting pretty specific. Can we write generic versions
 ;; of these catalog entries and supply parameters at runtime? Yes!
 ;;
-;; Now we're going to build in the previous challenge and implement
+;; Now we're going to build on the previous challenge and implement
 ;; the same job, except we'll use generic "plus" and "times" catalog entries.
 ;; There are a few ways that you can supply parameters to a function, but
 ;; the most direct for supplying Clojure values is a catalog parameter called
