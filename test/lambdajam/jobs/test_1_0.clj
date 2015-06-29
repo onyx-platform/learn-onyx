@@ -34,7 +34,7 @@
 ;;         v
 ;;    write-segments
 ;;
-;; The representation of a workflow in a Clojure vector of vectors.
+;; The representation of a workflow is a Clojure vector of vectors.
 ;; The inner vectors contain two elements: source, and destination, respectively.
 
 (def input
