@@ -11,7 +11,7 @@
 ;; functions for a workflow. This Onyx job will have 3 function tasks.
 ;; You'll need to implement the functions to pass the test. Read
 ;; the docstrings on the corresponding catalog entries for the
-;; functions purposes.
+;; functions' purposes.
 ;;
 ;; Try it with:
 ;;
