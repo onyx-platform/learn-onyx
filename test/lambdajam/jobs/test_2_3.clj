@@ -9,8 +9,8 @@
 
 ;; We're starting to get used to using the catalog as a point of
 ;; knob-tuning on functions. What else can we use the catalog for?
-;; Here's we'll explore grouping of segments driven by
-;; catalog-entry parameters.
+;; Here we'll explore grouping of segments driven by catalog-entry
+;; parameters.
 ;;
 ;; In a grouped task, we apply a function to every segment. This
 ;; function returns some value. All segments that return that same value
