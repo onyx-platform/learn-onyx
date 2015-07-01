@@ -63,9 +63,12 @@
 ;; all values and state that a function needs through parameters,
 ;; never reaching into the global context. Parameters can be added
 ;; in a few ways, but typically it's most convenient to use
-;; :onyx/params in the catalog entry. Parameters are appended
+;; :onyx/params in the catalog entry. Parameters are prepended
 ;; to *the front* of the function signature. The segment always
-;; comes last.
+;; comes last. That is, the a function with two added parameters
+;; will have signature:
+;;
+;; (fn name [param-1 param-2 segment])
 
 ;; Our first function, used by catalog entry :alternate-case.
 ;; It takes a segment (a Clojure map) as its argument - so we can
