@@ -3,10 +3,19 @@
 
 ;;; Workflows ;;;
 
+;;; <<< BEGIN READ ME >>>
+
+;; Workflows represents a graph of data control flow.
+;; It is a vector of vectors. The first element is a
+;; source, and the second element is a destination.
+;; The roots of the graph must be input tasks, and the
+;; leaves must be outputput tasks.
 (def workflow
   [[:read-segments :increment-n]
    [:increment-n :square-n]
    [:square-n :write-segments]])
+
+;;; <<< END READ ME >>>
 
 ;;; Catalogs ;;;
 

@@ -17,16 +17,20 @@ Chat about this workshop here:
 - Exception messages printed to the log are also printed to standard out for convenience.
 - All the answers can be found on the `answers` branch of this repository. Check it out and run `lein test`. All the tests should pass.
 - This workshop often leaves vars that need to be filled in with values unbound. If you see an exception complaining about an Unbound Var, track it down and fill in the implementation.
+- Invoking `lein test` on the master with no changes will cause it to hang. You need to fill in some code to make it run all the way through.
 
 ### How to work on a challenge
 
+0. Read the How to Start documentation, listed below, to run the environment sanity check.
 1. Open the test file in `test/` for the challenge. Read the comments.
 2. Examine the input and expected output.
 3. Run the test, watch it fail.
 4. Open the corresponding challenge source file in `src/` for the test.
 5. Locate the `<<< BEGIN FILL ME IN >>>` and `<<< END FILL ME IN >>>`.
 6. Fix the source file with the appropriate changes.
-7. Run the test file and pass the test. Refer to Onyx's documentation and the `answers` branch as needed. I recommend running the tests in a repl to avoid restarting the JVM between test runs. Starting and stopping the Onyx environment only takes about two seconds, so you can iterate much faster.
+7. Run the test file and pass the test. Refer to Onyx's documentation (links below) and the `answers` branch as needed. I recommend running the tests in a repl to avoid restarting the JVM between test runs. Starting and stopping the Onyx environment only takes about two seconds, so you can iterate much faster.
+
+Remember that challenge 0 on every level is already working!
 
 ### How to start
 
@@ -70,7 +74,6 @@ Below is the table of contents for the levels and challenges you'll be working t
   - Challenge 1: Implement a linear workflow
   - Challenge 2: Implement a branched workflow
   - Challenge 3: Implement a larger DAG workflow
-  - Challenge 4: Trigger a workflow task not-found error
 - Level 2: Catalogs
   - Challenge 0: Observe a minimal catalog
   - Challenge 1: Implement a catalog entry for a function
