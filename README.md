@@ -1,6 +1,6 @@
 # lambdajam-2015
 
-Onyx workshop materials for the LambdaJam 2015 conference. This workshop assumes attendees were at the Onyx talk earlier in the day and are familiar with the basic concepts. This repository contains a set of tests that can be invoked with `lein test`.
+Onyx workshop materials for the LambdaJam 2015 conference. This workshop assumes attendees were at the Onyx talk earlier in the day and are familiar with the basic concepts.
 
 Chat about this workshop here:
 
