@@ -4,7 +4,7 @@ Onyx workshop materials for the LambdaJam 2015 conference. This workshop assumes
 
 Chat about this workshop here:
 
-[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/MichaelDrogalis/lambdajam-2015?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/onyx-platform/lambdajam-2015?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 ### Things you need to know
 
