@@ -53,10 +53,10 @@
 ;; There are 5 lifecycle points that can be leveraged:
 ;;
 ;; - :lifecycle/start-task? 
-;; - :before-task-start
-;; - :after-task-stop
-;; - :before-batch
-;; - :after-batch
+;; - :lifecycle/before-task-start
+;; - :lifecycle/after-task-stop
+;; - :lifecycle/before-batch
+;; - :lifecycle/after-batch
 ;; 
 ;; All lifecycle functions except :start-task? *must* return maps.
 ;; These maps are merged back into the main event map, and the
