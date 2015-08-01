@@ -20,8 +20,8 @@
 ;; Keep in mind that exceptions cannot be serialized. You can transform
 ;; an exception to a new segment and send it to subsequent tasks by using
 ;; the :flow/post-transform key in the flow condition entry. Map this key
-;; to a keyword that represents a function. This function takes two args -
-;; the event map, and the exception object. This function must return a
+;; to a keyword that represents a function. This function takes three args -
+;; the event map, the segment, and the exception object. This function must return a
 ;; new segment.
 ;;
 ;; There is one more caveat. Flow conditions with :flow/thrown-exception?
