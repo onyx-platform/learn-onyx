@@ -13,7 +13,7 @@
   ([] (build-catalog 5 50))
   ([batch-size batch-timeout]
      [{:onyx/name :read-segments
-       :onyx/ident :core.async/read-from-chan
+       :onyx/plugin :onyx.plugin.core-async/input
        :onyx/type :input
        :onyx/medium :core.async
        :onyx/batch-size batch-size
@@ -29,7 +29,7 @@
        :onyx/doc "Multiplies :n in the segment by 2"}
 
       {:onyx/name :write-segments
-       :onyx/ident :core.async/write-to-chan
+       :onyx/plugin :onyx.plugin.core-async/output
        :onyx/type :output
        :onyx/medium :core.async
        :onyx/batch-size batch-size
@@ -53,10 +53,10 @@
 ;; There are 5 lifecycle points that can be leveraged:
 ;;
 ;; - :lifecycle/start-task? 
-;; - :before-task-start
-;; - :after-task-stop
-;; - :before-batch
-;; - :after-batch
+;; - :lifecycle/before-task-start
+;; - :lifecycle/after-task-stop
+;; - :lifecycle/before-batch
+;; - :lifecycle/after-batch
 ;; 
 ;; All lifecycle functions except :start-task? *must* return maps.
 ;; These maps are merged back into the main event map, and the

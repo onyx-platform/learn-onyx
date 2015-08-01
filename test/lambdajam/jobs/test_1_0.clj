@@ -20,7 +20,7 @@
 ;; `lein test lambdajam.jobs.test-1-0`
 ;;
 ;; Here's a picture of the workflow that we're crafting. Data
-;; starts at the top and flows downward is all directions. This
+;; starts at the top and flows downward in all directions. This
 ;; workflow happens to be flat, so data moves in a straight line.
 ;;
 ;;    read-segments
@@ -34,7 +34,7 @@
 ;;         v
 ;;    write-segments
 ;;
-;; The representation of a workflow in a Clojure vector of vectors.
+;; The representation of a workflow is a Clojure vector of vectors.
 ;; The inner vectors contain two elements: source, and destination, respectively.
 
 (def input
