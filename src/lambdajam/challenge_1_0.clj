@@ -23,7 +23,7 @@
   ([] (build-catalog 5 50))
   ([batch-size batch-timeout]
      [{:onyx/name :read-segments
-       :onyx/ident :core.async/read-from-chan
+       :onyx/plugin :onyx.plugin.core-async/input
        :onyx/type :input
        :onyx/medium :core.async
        :onyx/batch-size batch-size
@@ -46,7 +46,7 @@
        :onyx/doc "Multiplies :n in the segment by itself"}
 
       {:onyx/name :write-segments
-       :onyx/ident :core.async/write-to-chan
+       :onyx/plugin :onyx.plugin.core-async/output
        :onyx/type :output
        :onyx/medium :core.async
        :onyx/batch-size batch-size
