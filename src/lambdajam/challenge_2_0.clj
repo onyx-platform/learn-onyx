@@ -31,7 +31,7 @@
       ;; You'd typically find this catalog entry in the README of the
       ;; plugin repository.
       {:onyx/name :read-segments
-       :onyx/ident :core.async/read-from-chan
+       :onyx/plugin :onyx.plugin.core-async/input
        :onyx/type :input
        :onyx/medium :core.async
        :onyx/batch-size batch-size
@@ -57,7 +57,7 @@
       ;; This maps to a predefined keyword in the plugin. Under the
       ;; covers, a multimethod is dispatching and looking for this keyword.
       {:onyx/name :write-segments
-       :onyx/ident :core.async/write-to-chan
+       :onyx/plugin :onyx.plugin.core-async/output
        :onyx/type :output
        :onyx/medium :core.async
        :onyx/batch-size batch-size
