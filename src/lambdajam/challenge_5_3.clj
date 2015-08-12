@@ -13,7 +13,7 @@
   ([] (build-catalog 5 50))
   ([batch-size batch-timeout]
      [{:onyx/name :read-segments
-       :onyx/ident :core.async/read-from-chan
+       :onyx/plugin :onyx.plugin.core-async/input
        :onyx/type :input
        :onyx/medium :core.async
        :onyx/batch-size batch-size
@@ -29,7 +29,7 @@
        :onyx/doc "Returns the segment"}
 
       {:onyx/name :write-segments
-       :onyx/ident :core.async/write-to-chan
+       :onyx/plugin :onyx.plugin.core-async/output
        :onyx/type :output
        :onyx/medium :core.async
        :onyx/batch-size batch-size
@@ -84,7 +84,7 @@
 (defn handle-exception? [event old e all-new]
   (= (:type (ex-data e)) :guest))
 
-(defn transform-exception [event e]
+(defn transform-exception [event segment e]
     (assoc (:segment (ex-data e)) :error "Insufficient access level"))
 
 (def flow-conditions
