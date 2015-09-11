@@ -1,6 +1,6 @@
 # Onyx Workshop
 
-These are the material needed to conduct the Onyx workshop. All dependencies are included, no external set up beyond the JVM and Leiningen are needed.
+These are the material needed to conduct the Onyx workshop. All dependencies are included, no external set up beyond the JVM and Leiningen are needed. Please read all the instructions before beginning!
 
 ### Things you need to know
 
