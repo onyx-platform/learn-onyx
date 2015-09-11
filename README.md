@@ -1,10 +1,6 @@
-# lambdajam-2015
+# Onyx Workshop
 
-Onyx workshop materials for the LambdaJam 2015 conference. This workshop assumes attendees were at the Onyx talk earlier in the day and are familiar with the basic concepts.
-
-Chat about this workshop here:
-
-[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/onyx-platform/lambdajam-2015?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+These are the material needed to conduct the Onyx workshop. All dependencies are included, no external set up beyond the JVM and Leiningen are needed.
 
 ### Things you need to know
 
@@ -61,7 +57,7 @@ Each file has a moderate amount of comments to frame the discussion. Still, here
 ### Gotchas
 
 - Some of the tests capture standard out using `clojure.core/with-out-str` to make verifying assertions as easy as possible. If you're wondering where your printlns are going, check the test harness for the challenge. Feel free to drop it while you debug. 
-- If your environment starts and then hangs on the Onyx log line `INFO [onyx.log.zookeeper] - Starting ZooKeeper server`, your ZooKeeper port is in use. Switch the port to an unused port in `lambdajam.workshop-utils/zk-port`.
+- If your environment starts and then hangs on the Onyx log line `INFO [onyx.log.zookeeper] - Starting ZooKeeper server`, your ZooKeeper port is in use. Switch the port to an unused port in `workshop.workshop-utils/zk-port`.
 
 ### Guide
 
