@@ -76,11 +76,11 @@
 
 (defn build-lifecycles []
   [{:lifecycle/task :identity
-    :lifecycle/calls :lambdajam.challenge-4-3/aggregate-lifecycle
+    :lifecycle/calls :workshop.challenge-4-3/aggregate-lifecycle
     :onyx/doc "Computes an aggregate over the event stream"}
 
    {:lifecycle/task :read-segments
-    :lifecycle/calls :lambdajam.challenge-4-3/reader-lifecycle
+    :lifecycle/calls :workshop.challenge-4-3/reader-lifecycle
     :core.async/id (java.util.UUID/randomUUID)
     :onyx/doc "Injects the core.async reader channel"}
 
@@ -89,7 +89,7 @@
     :onyx/doc "core.async plugin base lifecycle"}
 
    {:lifecycle/task :write-segments
-    :lifecycle/calls :lambdajam.challenge-4-3/writer-lifecycle
+    :lifecycle/calls :workshop.challenge-4-3/writer-lifecycle
     :core.async/id (java.util.UUID/randomUUID)
     :onyx/doc "Injects the core.async writer channel"}
 

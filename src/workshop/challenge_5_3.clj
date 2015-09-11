@@ -92,7 +92,7 @@
     :flow/to [:write-segments]
     :flow/short-circuit? true
     :flow/thrown-exception? true
-    :flow/predicate :lambdajam.challenge-5-3/handle-exception?
-    :flow/post-transform :lambdajam.challenge-5-3/transform-exception}])
+    :flow/predicate :workshop.challenge-5-3/handle-exception?
+    :flow/post-transform :workshop.challenge-5-3/transform-exception}])
 
 ;; <<< END FILL ME IN >>>

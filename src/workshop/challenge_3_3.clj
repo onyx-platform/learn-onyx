@@ -24,7 +24,7 @@
       ;; <<< BEGIN FILL ME IN PART 1 >>>
 
       {:onyx/name :transform-name
-       :onyx/fn :lambdajam.challenge-3-3/transform-name
+       :onyx/fn :workshop.challenge-3-3/transform-name
        :name/prefix "~"
        :name/suffix "?"
        :onyx/params [:name/prefix :name/suffix]

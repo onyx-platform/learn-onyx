@@ -102,11 +102,11 @@
 (def flow-conditions
   [{:flow/from :identity
     :flow/to [:children]
-    :flow/predicate :lambdajam.challenge-5-4/child?}
+    :flow/predicate :workshop.challenge-5-4/child?}
 
    {:flow/from :identity
     :flow/to [:adults]
-    :flow/predicate :lambdajam.challenge-5-4/adult?
+    :flow/predicate :workshop.challenge-5-4/adult?
     :flow/exclude-keys [:age]}])
 
 ;; <<< END FILL ME IN >>>

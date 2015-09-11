@@ -84,7 +84,7 @@
   [{:flow/from :identity
     :flow/to [:write-segments]
     :flow/predicate [:or
-                     :lambdajam.challenge-5-2/admin?
-                     :lambdajam.challenge-5-2/user?]}])
+                     :workshop.challenge-5-2/admin?
+                     :workshop.challenge-5-2/user?]}])
 
 ;; <<< END FILL ME IN >>>

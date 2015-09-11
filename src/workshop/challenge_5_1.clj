@@ -124,14 +124,14 @@
 (def flow-conditions
   [{:flow/from :identity
     :flow/to [:admins-output]
-    :flow/predicate :lambdajam.challenge-5-1/admin?}
+    :flow/predicate :workshop.challenge-5-1/admin?}
 
    {:flow/from :identity
     :flow/to [:users-output]
-    :flow/predicate :lambdajam.challenge-5-1/user?}
+    :flow/predicate :workshop.challenge-5-1/user?}
 
    {:flow/from :identity
     :flow/to [:guests-output]
-    :flow/predicate :lambdajam.challenge-5-1/guest?}])
+    :flow/predicate :workshop.challenge-5-1/guest?}])
 
 ;; <<< END FILL ME IN >>>

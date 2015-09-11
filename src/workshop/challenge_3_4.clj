@@ -24,7 +24,7 @@
       ;; <<< BEGIN FILL ME IN PART 1 >>>
 
       {:onyx/name :echo-segments
-       :onyx/fn :lambdajam.challenge-3-4/echo-segments
+       :onyx/fn :workshop.challenge-3-4/echo-segments
        :onyx/type :function
        :onyx/bulk? true
        :onyx/batch-size batch-size
