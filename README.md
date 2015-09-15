@@ -20,7 +20,7 @@ These are the material needed to conduct the Onyx workshop. All dependencies are
 0. Read the How to Start documentation, listed below, to run the environment sanity check.
 1. Open the test file in `test/` for the challenge. Read the comments.
 2. Examine the input and expected output.
-3. Run the test, watch it fail.
+3. Run the test, watch it fail. If you aren't using something like Cider or nrepl, you can run `lein repl`, and invoke the appropriate test var. Run `(reset)` to hot reload your code.
 4. Open the corresponding challenge source file in `src/` for the test.
 5. Locate the `<<< BEGIN FILL ME IN >>>` and `<<< END FILL ME IN >>>`.
 6. Fix the source file with the appropriate changes.
