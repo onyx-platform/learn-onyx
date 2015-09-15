@@ -58,18 +58,24 @@
 
 (deftest test-level-2-challenge-3
   (try
-    (let [catalog (c/build-catalog)
-          lifecycles (c/build-lifecycles)]
-      (user/go (u/n-peers catalog c/workflow))
-      (u/bind-inputs! lifecycles {:read-segments input})
-      (let [peer-config (u/load-peer-config (:onyx-id user/system))
-            job {:workflow c/workflow
-                 :catalog catalog
-                 :lifecycles lifecycles
-                 :task-scheduler :onyx.task-scheduler/balanced}]
-        (onyx.api/submit-job peer-config job)
-        (let [[results] (u/collect-outputs! lifecycles [:write-segments])]
-          (u/segments-equal? expected-output results))))
+    (let [results
+          (with-out-str
+            (let [catalog (c/build-catalog)
+                  lifecycles (c/build-lifecycles)]
+              (user/go (u/n-peers catalog c/workflow))
+              (u/bind-inputs! lifecycles {:read-segments input})
+              (let [peer-config (u/load-peer-config (:onyx-id user/system))
+                    job {:workflow c/workflow
+                         :catalog catalog
+                         :lifecycles lifecycles
+                         :task-scheduler :onyx.task-scheduler/balanced}]
+                (onyx.api/submit-job peer-config job)
+                (let [[results] (u/collect-outputs! lifecycles [:write-segments])]
+                  (u/segments-equal? expected-output results)))))
+          lines (butlast (rest (clojure.string/split results #"\n")))
+          groups (group-by #(last (re-find #":user-id (\d+).*" %)) lines)]
+      (doseq [k (keys groups)]
+        (is (apply = (map #(last (re-find #"Peer (\w+-\w+-\w+-\w+-\w+).*" %)) (get groups k))))))
     (catch InterruptedException e
       (Thread/interrupted))
     (finally
