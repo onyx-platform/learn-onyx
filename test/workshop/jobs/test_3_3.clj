@@ -12,6 +12,10 @@
 ;; write a catalog entry and parameterized function from scratch.
 ;; There are two sections of the source file for you to work on.
 ;;
+;; The goal is to prepend a ~ and append a ? to every :name value
+;; in your segment. By parameterizing the function, you can dynamically 
+;; parameterize your functions at runtime.
+;;
 ;; Try it with:
 ;;
 ;; `lein test workshop.jobs.test-3-3`
