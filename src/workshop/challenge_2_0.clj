@@ -26,7 +26,7 @@
      [;; The first catalog entry we'll look at is an :input
       ;; type. :input and :output catalog entries talk to plugins.
       ;; Plugins are the mechanism by which data is moved in and out of
-      ;; Onyx. The important thing to note here is :onyx/ident.
+      ;; Onyx. The important thing to note here is :onyx/plugin.
       ;; This is mapped to a predefined keyword (resolved to a fn in that namespace) 
       ;; by the plugin author. You'd typically find this
       ;; catalog entry in the README of the plugin repository.
@@ -52,7 +52,7 @@
        :onyx/doc "Multiplies :n in the segment by 2"}
 
       ;; The last catalog entry to observe is the :output type.
-      ;; As with the :input type, the critical piece is :onyx/ident.
+      ;; As with the :input type, the critical piece is :onyx/plugin.
       ;; This maps to a predefined keyword in the plugin. Under the
       ;; covers, a multimethod is dispatching and looking for this keyword.
       {:onyx/name :write-segments
