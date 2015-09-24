@@ -46,8 +46,45 @@
 
 (def logger (agent nil))
 
-;; <<< BEGIN FILL ME IN >>>
+(defn inject-reader-ch [event lifecycle]
+  {:core.async/chan (u/get-input-channel (:core.async/id lifecycle))})
 
-(defn build-lifecycles [])
+(defn inject-writer-ch [event lifecycle]
+  {:core.async/chan (u/get-output-channel (:core.async/id lifecycle))})
+
+(def reader-lifecycle
+  {:lifecycle/before-task-start inject-reader-ch})
+
+(def writer-lifecycle
+  {:lifecycle/before-task-start inject-writer-ch})
+
+;; <<< BEGIN FILL ME IN FOR logger-lifecycle calls >>>
 
 ;; <<< END FILL ME IN >>>
+
+;; <<< BEGIN FILL ME IN FOR log-segments >>>
+
+;; <<< END FILL ME IN >>>
+
+(defn build-lifecycles []
+  [;; <<< BEGIN FILL ME IN FOR :times-three >>>
+
+   ;; <<< END FILL ME IN >>>
+
+   {:lifecycle/task :read-segments
+    :lifecycle/calls :workshop.challenge-4-1/reader-lifecycle
+    :core.async/id (java.util.UUID/randomUUID)
+    :onyx/doc "Injects the core.async reader channel"}
+
+   {:lifecycle/task :read-segments
+    :lifecycle/calls :onyx.plugin.core-async/reader-calls
+    :onyx/doc "core.async plugin base lifecycle"}
+
+   {:lifecycle/task :write-segments
+    :lifecycle/calls :workshop.challenge-4-1/writer-lifecycle
+    :core.async/id (java.util.UUID/randomUUID)
+    :onyx/doc "Injects the core.async writer channel"}
+
+   {:lifecycle/task :write-segments
+    :lifecycle/calls :onyx.plugin.core-async/writer-calls
+    :onyx/doc "core.async plugin base lifecycle"}])
