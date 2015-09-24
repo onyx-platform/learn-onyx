@@ -9,7 +9,7 @@ These are the material needed to conduct the Onyx workshop. All dependencies are
 - Each level has several challenges that you can work through.
 - Every challenge has one test file named `test_<level>_<challenge>.clj` and one implementation file named `challenge_<level>_<challenge>`.
 - Every level has a "challenge 0". This challenge is already working, and serves as an example. You don't need to do anything here but read.
-- Onyx outputs its log messages to `onyx.log` in this project's root directory. Follow it with `tail -F onyx.log`.
+- *IMPORTANT* Onyx outputs its log messages to `onyx.log` in this project's root directory. Follow it with `tail -F onyx.log`.
 - Exception messages printed to the log are also printed to standard out for convenience.
 - All the answers can be found on the `answers` branch of this repository. Check it out and run `lein test`. All the tests should pass.
 - This workshop often leaves vars that need to be filled in with values unbound. If you see an exception complaining about an Unbound Var, track it down and fill in the implementation.
