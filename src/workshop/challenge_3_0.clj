@@ -79,7 +79,7 @@
         (map #(%2 (str %1)) name)
         (apply str))})
 
-;; Usually, it's a good idea to take a apply one or more transformations
+;; Usually, it's a good idea to apply one or more transformations
 ;; to the map's keys and return the entire map. That way, each function
 ;; can simply pass through keys that it doesn't need to know about.
 (defn exclaim [segment]
