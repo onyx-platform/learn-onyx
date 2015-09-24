@@ -72,6 +72,7 @@
                 (onyx.api/submit-job peer-config job)
                 (let [[results] (u/collect-outputs! lifecycles [:write-segments])]
                   (u/segments-equal? expected-output results)))))
+          _ (println results)
           lines (butlast (rest (clojure.string/split results #"\n")))
           groups (group-by #(last (re-find #":user-id (\d+).*" %)) lines)]
       (doseq [k (keys groups)]

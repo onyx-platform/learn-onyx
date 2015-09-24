@@ -46,7 +46,8 @@
 
 (def logger (agent nil))
 
-;; <<< BEGIN FILL ME IN >>>
+(defn inject-reader-ch [event lifecycle]
+  {:core.async/chan (u/get-input-channel (:core.async/id lifecycle))})
 
 (defn log-segments [event lifecycle]
   (doseq [m (:onyx.core/batch event)]
@@ -90,5 +91,3 @@
    {:lifecycle/task :write-segments
     :lifecycle/calls :onyx.plugin.core-async/writer-calls
     :onyx/doc "core.async plugin base lifecycle"}])
-
-;; <<< END FILL ME IN >>>

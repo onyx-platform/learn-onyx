@@ -27,9 +27,9 @@
       ;; type. :input and :output catalog entries talk to plugins.
       ;; Plugins are the mechanism by which data is moved in and out of
       ;; Onyx. The important thing to note here is :onyx/ident.
-      ;; This is mapped to a predefined keyword by the plugin author.
-      ;; You'd typically find this catalog entry in the README of the
-      ;; plugin repository.
+      ;; This is mapped to a predefined keyword (resolved to a fn in that namespace) 
+      ;; by the plugin author. You'd typically find this
+      ;; catalog entry in the README of the plugin repository.
       {:onyx/name :read-segments
        :onyx/plugin :onyx.plugin.core-async/input
        :onyx/type :input
@@ -40,11 +40,10 @@
        :onyx/doc "Reads segments from a core.async channel"}
 
       ;; Onyx function tasks require a :onyx/fn parameter to
-      ;; be defined, pointing to a keyword that represents
-      ;; a function. This function *must* be required onto
-      ;; the classpath before it is resolved. Unless otherwise
-      ;; specified, it should take exactly one parameter - a single
-      ;; segment.
+      ;; be defined, which is a keyword that maps to a namespace and var name
+      ;; The function's ns *must* be required onto the classpath before it is
+      ;; resolved. Unless otherwise specified, it should take exactly one
+      ;; parameter - a single segment.
       {:onyx/name :times-two
        :onyx/fn :workshop.challenge-2-0/times-two
        :onyx/type :function

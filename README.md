@@ -24,7 +24,7 @@ These are the material needed to conduct the Onyx workshop. All dependencies are
 4. Open the corresponding challenge source file in `src/` for the test.
 5. Locate the `<<< BEGIN FILL ME IN >>>` and `<<< END FILL ME IN >>>`.
 6. Fix the source file with the appropriate changes.
-7. Run the test file and pass the test. Refer to Onyx's documentation (links below) and the `answers` branch as needed. I recommend running the tests in a repl to avoid restarting the JVM between test runs. Starting and stopping the Onyx environment only takes about two seconds, so you can iterate much faster.
+7. Run the test file and pass the test. Refer to Onyx's documentation (links below) and the `answers` branch as needed. I recommend running the tests in a repl to avoid restarting the JVM between test runs. Starting and stopping the Onyx environment only takes about two seconds, so you can iterate much faster. You may wish to call `(reset) (clojure.test/run-tests 'workshop.jobs.test-0-0)` via the repl to reset your environment before running each test.
 
 Remember that challenge 0 on every level is already working!
 
