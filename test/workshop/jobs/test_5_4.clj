@@ -35,8 +35,8 @@
    {:username "Lucas"}])
 
 (def expected-child-output
-  [{:username "Ron" :age 16}
-   {:username "Kara" :age 14}])
+  [{:username "Ron"}
+   {:username "Kara"}])
 
 (deftest test-level-5-challenge-4
   (try
