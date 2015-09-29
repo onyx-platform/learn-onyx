@@ -1,26 +1,29 @@
-(ns workshop.jobs.test-2-1
+(ns workshop.jobs.challenge-0-0-test
   (:require [clojure.test :refer [deftest is]]
             [clojure.java.io :refer [resource]]
             [com.stuartsierra.component :as component]
             [workshop.launcher.dev-system :refer [onyx-dev-env]]
-            [workshop.challenge-2-1 :as c]
+            [workshop.challenge-0-0 :as c]
             [workshop.workshop-utils :as u]
             [onyx.api]))
 
-;; This challenge requires you to write a few catalog entries
-;; of your own for function tasks. Map the catalog entries
-;; to their corresponding functions as defined by the workflow.
+;; This is a basic, already-complete example to test that Onyx is working
+;; okay on your machine. Try it with:
 ;;
-;; Try it with:
+;; `lein test workshop.jobs.challenge-0-0-test`
 ;;
-;; `lein test workshop.jobs.test-2-1`
+;; You should see some output printed to standard out.
+;; If this is your first time using Onyx, look at the corresponding
+;; source file to get a feel of the parts of an Onyx program.
 ;;
 
-(def input (map (fn [n] {:n n}) (range 10)))
+(def input
+  [{:sentence "Getting started with Onyx is easy"}
+   {:sentence "This is a segment"}
+   {:sentence "Segments are Clojure maps"}
+   {:sentence "Sample inputs are easy to fabricate"}])
 
-(def expected-output (map (fn [n] {:n (+ 50 (* 3 n))}) (range 10)))
-
-(deftest test-level-2-challenge-1
+(deftest test-level-0-challenge-0
   (try
     (let [catalog (c/build-catalog)
           lifecycles (c/build-lifecycles)]
@@ -33,7 +36,10 @@
                  :task-scheduler :onyx.task-scheduler/balanced}]
         (onyx.api/submit-job peer-config job)
         (let [[results] (u/collect-outputs! lifecycles [:write-segments])]
-          (u/segments-equal? expected-output results))))
+          (println "==== Start job output ====")
+          (clojure.pprint/pprint results)
+          (println "==== End job output ====")
+          (u/segments-equal? input results))))
     (catch InterruptedException e
       (Thread/interrupted))
     (finally

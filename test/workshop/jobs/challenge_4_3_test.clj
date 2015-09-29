@@ -1,31 +1,37 @@
-(ns workshop.jobs.test-4-2
+(ns workshop.jobs.challenge-4-3-test
   (:require [clojure.test :refer [deftest is]]
             [clojure.java.io :refer [resource]]
             [com.stuartsierra.component :as component]
             [workshop.launcher.dev-system :refer [onyx-dev-env]]
-            [workshop.challenge-4-2 :as c]
+            [workshop.challenge-4-3 :as c]
             [workshop.workshop-utils :as u]
             [onyx.api]))
 
-;; Logging is great and all, but we've now opened to the door
-;; to something much more interesting - maintaining state.
-;; In this challenge, you're going to create an atom in
-;; the :before-task-start lifecycle hook.
-;; After each batch is processed, find the maximum value
-;; that we saw in the :identity task. After the task is finished,
-;; print the maximum value that we found to standard out.
-;; Use the atom for maintain the latest maximum value.
+;; Time to compose what we've learned about state and lifecycles
+;; with function parameters. One way to add parameters to a function
+;; is with :onyx/params. Another way is by using lifecycles. You
+;; can add non-serializable parameters to a function by using the
+;; :before-task-start and/or :before-batch lifecycles. Return a map
+;; with key :onyx.core/params. The value of this key should be a vector
+;; of values. This vector is applied to the *beginning* of the function
+;; signature.
+;;
+;; In this challenge, you'll create an atom using lifecycles to sum
+;; up the :n values of a segment. Maintain the state through the function,
+;; and access the atom as a parameter of the sum! function.
+;;
+;; This technique composes with all the other ways to inject parameters.
 ;;
 ;; Try it with:
 ;;
-;; `lein test workshop.jobs.test-4-2`
+;; `lein test workshop.jobs.challenge-4-3-test`
 ;;
 
 (def input (map (fn [n] {:n n}) (shuffle (range 100))))
 
-(def expected-output (map (fn [n] {:n n}) (range 100)))
+(def expected-output input)
 
-(deftest test-level-4-challenge-2
+(deftest test-level-4-challenge-3
   (let [results
         (with-out-str
           (try
@@ -46,4 +52,4 @@
             (finally
              (user/stop))))
         lines (clojure.string/split results #"\n")]
-    (is (= "Maximum value was: 99" (last lines)))))
+    (is (= "Summation was: 4950" (last lines)))))

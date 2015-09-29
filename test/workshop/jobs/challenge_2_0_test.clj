@@ -1,29 +1,35 @@
-(ns workshop.jobs.test-0-0
+(ns workshop.jobs.challenge-2-0-test
   (:require [clojure.test :refer [deftest is]]
             [clojure.java.io :refer [resource]]
             [com.stuartsierra.component :as component]
             [workshop.launcher.dev-system :refer [onyx-dev-env]]
-            [workshop.challenge-0-0 :as c]
+            [workshop.challenge-2-0 :as c]
             [workshop.workshop-utils :as u]
             [onyx.api]))
 
-;; This is a basic, already-complete example to test that Onyx is working
-;; okay on your machine. Try it with:
+;; In this level, we're going to explore the catalog data structure.
+;; Catalogs describe what the tasks of a workflow actually do, and
+;; how to parameterize them in a functional and non-functional manner.
 ;;
-;; `lein test workshop.jobs.test-0-0`
+;; Onyx's information model is documented in the user guide:
+;; http://onyx-platform.gitbooks.io/onyx/content/doc/user-guide/information-model.html
 ;;
-;; You should see some output printed to standard out.
-;; If this is your first time using Onyx, look at the corresponding
-;; source file to get a feel of the parts of an Onyx program.
+;;
+;; This challenge is an already-working example to get your started.
+;; It takes a stream of numbers and multiplies them by 2.
+;; Go to the source file and read the comments about the catalog to get
+;; an explanation about how it works.
+;;
+;; Try it with:
+;;
+;; `lein test workshop.jobs.challenge-2-0-test`
 ;;
 
-(def input
-  [{:sentence "Getting started with Onyx is easy"}
-   {:sentence "This is a segment"}
-   {:sentence "Segments are Clojure maps"}
-   {:sentence "Sample inputs are easy to fabricate"}])
+(def input (map (fn [n] {:n n}) (range 10)))
 
-(deftest test-level-0-challenge-0
+(def expected-output (map (fn [n] {:n (* 2 n)}) (range 10)))
+
+(deftest test-level-2-challenge-0
   (try
     (let [catalog (c/build-catalog)
           lifecycles (c/build-lifecycles)]
@@ -36,10 +42,7 @@
                  :task-scheduler :onyx.task-scheduler/balanced}]
         (onyx.api/submit-job peer-config job)
         (let [[results] (u/collect-outputs! lifecycles [:write-segments])]
-          (println "==== Start job output ====")
-          (clojure.pprint/pprint results)
-          (println "==== End job output ====")
-          (u/segments-equal? input results))))
+          (u/segments-equal? expected-output results))))
     (catch InterruptedException e
       (Thread/interrupted))
     (finally
