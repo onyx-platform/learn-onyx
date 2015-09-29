@@ -1,46 +1,56 @@
-(ns workshop.jobs.test-3-1
+(ns workshop.jobs.challenge-1-1-test
   (:require [clojure.test :refer [deftest is]]
             [clojure.java.io :refer [resource]]
             [com.stuartsierra.component :as component]
             [workshop.launcher.dev-system :refer [onyx-dev-env]]
-            [workshop.challenge-3-1 :as c]
+            [workshop.challenge-1-1 :as c]
             [workshop.workshop-utils :as u]
             [onyx.api]))
 
-;; Now that you know the rules of functions, let's implement some
-;; functions for a workflow. This Onyx job will have 3 function tasks.
-;; You'll need to implement the functions to pass the test. Read
-;; the docstrings on the corresponding catalog entries for the
-;; functions' purposes.
+;; This challenge builds on the previous challenge - you'll implement
+;; your first workflow. Below is a pictorial description of what
+;; the workflow should look like:
+;;
+;;    read-segments
+;;         |
+;;         v
+;;       cube-n
+;;         |
+;;         v
+;;      add-ten
+;;         |
+;;         v
+;;    multiply-by-5
+;;         |
+;;         v
+;;    write-segments
+;;
+;; Open the corresponding src file for this challenge and fill in the workflow.
+;; The workflow is left as an undefined var. Add the appropriate data
+;; structure.
+;;
+;; Look for the "<<< BEGIN FILL ME IN >>>" and "<<< END FILL ME IN >>>"
+;; comments to start your work.
 ;;
 ;; Try it with:
 ;;
-;; `lein test workshop.jobs.test-3-1`
-;;
+;; `lein test workshop.jobs.challenge-1-1-test`
 
-(def input
-  [{:name "Mike"}
-   {:name "Lucas"}
-   {:name "Tim"}
-   {:name "Aaron"}
-   {:name "Lauren"}
-   {:name "Bob"}
-   {:name "Fred"}
-   {:name "Lisa"}
-   {:name "Tina"}])
+(def input (mapv (fn [n] {:n n}) (range 10)))
 
 (def expected-output
-  [{:name "M | I | K | E"}
-   {:name "L | U | C | A | S"}
-   {:name "T | I | M"}
-   {:name "A | A | R | O | N"}
-   {:name "L | A | U | R | E | N"}
-   {:name "B | O | B"}
-   {:name "F | R | E | D"}
-   {:name "L | I | S | A"}
-   {:name "T | I | N | A"}])
+  [{:n 50}
+   {:n 55}
+   {:n 90}
+   {:n 185}
+   {:n 370}
+   {:n 675}
+   {:n 1130}
+   {:n 1765}
+   {:n 2610}
+   {:n 3695}])
 
-(deftest test-level-3-challenge-0
+(deftest test-level-1-challenge-1
   (try
     (let [catalog (c/build-catalog)
           lifecycles (c/build-lifecycles)]

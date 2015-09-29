@@ -1,4 +1,4 @@
-(ns workshop.jobs.test-1-3
+(ns workshop.jobs.challenge-1-3-test
   (:require [clojure.test :refer [deftest is]]
             [clojure.java.io :refer [resource]]
             [com.stuartsierra.component :as component]
@@ -28,7 +28,7 @@
 ;;
 ;; Try it with:
 ;;
-;; `lein test workshop.jobs.test-1-3`
+;; `lein test workshop.jobs.challenge-1-3-test`
 
 (def a-input (map (fn [x] {:msg x}) [1 2 3 4 5]))
 

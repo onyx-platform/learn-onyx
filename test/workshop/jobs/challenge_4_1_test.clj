@@ -1,38 +1,28 @@
-(ns workshop.jobs.test-4-3
+(ns workshop.jobs.challenge-4-1-test
   (:require [clojure.test :refer [deftest is]]
             [clojure.java.io :refer [resource]]
             [com.stuartsierra.component :as component]
             [workshop.launcher.dev-system :refer [onyx-dev-env]]
-            [workshop.challenge-4-3 :as c]
+            [workshop.challenge-4-1 :as c]
             [workshop.workshop-utils :as u]
             [onyx.api]))
 
-;; Time to compose what we've learned about state and lifecycles
-;; with function parameters. One way to add parameters to a function
-;; is with :onyx/params. Another way is by using lifecycles. You
-;; can add non-serializable parameters to a function by using the
-;; :before-task-start and/or :before-batch lifecycles. Return a map
-;; with key :onyx.core/params. The value of this key should be a vector
-;; of values. This vector is applied to the *beginning* of the function
-;; signature.
-;;
-;; In this challenge, you'll create an atom using lifecycles to sum
-;; up the :n values of a segment. Maintain the state through the function,
-;; and access the atom as a parameter of the sum! function.
-;;
-;; This technique composes with all the other ways to inject parameters.
+;; In this challenge, we're going to log every segment that
+;; we see after it's processed by the :times-three task with
+;; the lifecycle hook :after-batch. Obtain the segments via
+;; the key :onyx.core/batch in the event map.
 ;;
 ;; Try it with:
 ;;
-;; `lein test workshop.jobs.test-4-3`
+;; `lein test workshop.jobs.challenge-4-1-test`
 ;;
 
-(def input (map (fn [n] {:n n}) (shuffle (range 100))))
+(def input (map (fn [n] {:n n}) (range 10)))
 
-(def expected-output input)
+(def expected-output (map (fn [n] {:n (* 3 n)}) (range 10)))
 
-(deftest test-level-4-challenge-3
-  (let [results
+(deftest test-level-4-challenge-1
+  (let [output
         (with-out-str
           (try
             (let [catalog (c/build-catalog)
@@ -51,5 +41,8 @@
               (Thread/interrupted))
             (finally
              (user/stop))))
-        lines (clojure.string/split results #"\n")]
-    (is (= "Summation was: 4950" (last lines)))))
+        results (clojure.string/split output #"\n")]
+    (is (= "Starting Onyx development environment" (first results)))
+    (is (= "Stopping Onyx development environment" (last results)))
+    (is (= (into #{} (map (fn [n] (str {:n n})) (range 10)))
+           (into #{} (butlast (rest results)))))))

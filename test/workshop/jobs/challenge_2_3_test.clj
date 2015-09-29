@@ -1,4 +1,4 @@
-(ns workshop.jobs.test-2-3
+(ns workshop.jobs.challenge-2-3-test
   (:require [clojure.test :refer [deftest is]]
             [clojure.java.io :refer [resource]]
             [com.stuartsierra.component :as component]
@@ -36,11 +36,11 @@
 ;; so if you need a bit more of an explanation, you might want to consult
 ;; the documentation on this feature for hints:
 ;;
-;; https://github.com/onyx-platform/onyx/blob/0.6.x/doc/user-guide/functions.md#grouping--aggregation
+;; https://github.com/onyx-platform/onyx/blob/0.7.x/doc/user-guide/functions.md#grouping--aggregation
 ;;
 ;; Try it with:
 ;;
-;; `lein test workshop.jobs.test-2-3`
+;; `lein test workshop.jobs.challenge-2-3-test`
 ;;
 
 (def input

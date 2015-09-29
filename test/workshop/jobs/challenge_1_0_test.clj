@@ -1,4 +1,4 @@
-(ns workshop.jobs.test-1-0
+(ns workshop.jobs.challenge-1-0-test
   (:require [clojure.test :refer [deftest is]]
             [clojure.java.io :refer [resource]]
             [com.stuartsierra.component :as component]
@@ -17,7 +17,7 @@
 ;; This challenge is an already-working example to get your started.
 ;; Try it with:
 ;;
-;; `lein test workshop.jobs.test-1-0`
+;; `lein test workshop.jobs.challenge-1-0-test`
 ;;
 ;; Here's a picture of the workflow that we're crafting. Data
 ;; starts at the top and flows downward in all directions. This

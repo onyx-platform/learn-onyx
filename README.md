@@ -7,7 +7,7 @@ These are the material needed to conduct the Onyx workshop. All dependencies are
 - The workshop is divided into levels and challenges.
 - Each level is dedicated to a specific Onyx feature.
 - Each level has several challenges that you can work through.
-- Every challenge has one test file named `test_<level>_<challenge>.clj` and one implementation file named `challenge_<level>_<challenge>`.
+- Every challenge has one test file named `challenge_<level>_<challenge>_test.clj` and one implementation file named `challenge_<level>_<challenge>`.
 - Every level has a "challenge 0". This challenge is already working, and serves as an example. You don't need to do anything here but read.
 - *IMPORTANT* Onyx outputs its log messages to `onyx.log` in this project's root directory. Follow it with `tail -F onyx.log`.
 - Exception messages printed to the log are also printed to standard out for convenience.
@@ -25,7 +25,7 @@ These are the material needed to conduct the Onyx workshop. All dependencies are
 5. Open the corresponding challenge source file in `src/` for the test.
 6. Locate the `<<< BEGIN FILL ME IN >>>` and `<<< END FILL ME IN >>>`.
 7. Fix the source file with the appropriate changes.
-8. Run the test file and pass the test. Refer to Onyx's documentation (links below) and the `answers` branch as needed. I recommend running the tests in a repl to avoid restarting the JVM between test runs. Starting and stopping the Onyx environment only takes about two seconds, so you can iterate much faster. You may wish to call `(reset) (clojure.test/run-tests 'workshop.jobs.test-0-0)` via the repl to reset your environment before running each test.
+8. Run the test file and pass the test. Refer to Onyx's documentation (links below) and the `answers` branch as needed. I recommend running the tests in a repl to avoid restarting the JVM between test runs. Starting and stopping the Onyx environment only takes about two seconds, so you can iterate much faster. You may wish to call `(reset) (clojure.test/run-tests 'workshop.jobs.challenge-0-0-test)` via the repl to reset your environment before running each test.
 
 Remember that challenge 0 on every level is already working!
 

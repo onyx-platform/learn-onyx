@@ -1,4 +1,4 @@
-(ns workshop.jobs.test-3-0
+(ns workshop.jobs.challenge-3-0-test
   (:require [clojure.test :refer [deftest is]]
             [clojure.java.io :refer [resource]]
             [com.stuartsierra.component :as component]
@@ -22,7 +22,7 @@
 ;;
 ;; Try it with:
 ;;
-;; `lein test workshop.jobs.test-3-0`
+;; `lein test workshop.jobs.challenge-3-0-test`
 ;;
 
 (def input
