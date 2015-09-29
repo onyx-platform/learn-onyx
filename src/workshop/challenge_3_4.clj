@@ -44,7 +44,7 @@
 
 ;;; Functions ;;;
 
-;; <<< BEGIN FILL ME IN PART 1 >>>
+;; <<< BEGIN FILL ME IN PART 2 >>>
 
 (defn echo-segments [segments]
   (println segments)
