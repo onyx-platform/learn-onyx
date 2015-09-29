@@ -10,7 +10,9 @@
 ;; In this challenge, we're going to log every segment that
 ;; we see after it's processed by the :times-three task with
 ;; the lifecycle hook :after-batch. Obtain the segments via
-;; the key :onyx.core/batch in the event map.
+;; the key :onyx.core/batch in the event map. This key retrieves
+;; the segments that enter the task - before processing.
+;; Iterate over each segment with `doseq` and log its value.
 ;;
 ;; Try it with:
 ;;
