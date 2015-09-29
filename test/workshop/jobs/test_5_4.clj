@@ -11,11 +11,11 @@
 ;; key exclusions. Sometimes, you'll want to convey some information
 ;; from a function to a flow condition predicate that doesn't
 ;; need to be sent downstream. In the example below, we're going
-;; to route users based on their age. Their age is only relevant
-;; to the routing, and isn't required after that.
+;; to route users to different tasks based on their age.
+;; Their age is only relevant to the routing, and isn't required after that.
 ;;
-;; Use :flow/exclude-keys and set its value to a vector of keywords
-;; to remove from each segment if present.
+;; Use :flow/exclude-keys to remove the :age key from all the segments
+;; after it passes through the :identity function.
 ;;
 ;; Try it with:
 ;;
