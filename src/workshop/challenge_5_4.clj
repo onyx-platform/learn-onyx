@@ -102,7 +102,8 @@
 (def flow-conditions
   [{:flow/from :identity
     :flow/to [:children]
-    :flow/predicate :workshop.challenge-5-4/child?}
+    :flow/predicate :workshop.challenge-5-4/child?
+    :flow/exclude-keys [:age]}
 
    {:flow/from :identity
     :flow/to [:adults]
