@@ -1,8 +1,6 @@
 (ns workshop.jobs.challenge-4-1-test
   (:require [clojure.test :refer [deftest is]]
-            [clojure.java.io :refer [resource]]
-            [com.stuartsierra.component :as component]
-            [workshop.launcher.dev-system :refer [onyx-dev-env]]
+            [onyx.test-helper :refer [with-test-env]]
             [workshop.challenge-4-1 :as c]
             [workshop.workshop-utils :as u]
             [onyx.api]))
@@ -24,27 +22,26 @@
 (def expected-output (map (fn [n] {:n (* 3 n)}) (range 10)))
 
 (deftest test-level-4-challenge-1
-  (let [output
-        (with-out-str
-          (try
-            (let [catalog (c/build-catalog)
-                  lifecycles (c/build-lifecycles)]
-              (user/go (u/n-peers catalog c/workflow))
+  (let [cluster-id (java.util.UUID/randomUUID)
+        env-config (u/load-env-config cluster-id)
+        peer-config (u/load-peer-config cluster-id)
+        catalog (c/build-catalog)
+        lifecycles (c/build-lifecycles)
+        n-peers (u/n-peers catalog c/workflow)]
+    (let [output
+          (with-out-str
+            (with-test-env
+              [test-env [n-peers env-config peer-config]]
               (u/bind-inputs! lifecycles {:read-segments input})
-              (let [peer-config (u/load-peer-config (:onyx-id user/system))
-                    job {:workflow c/workflow
+              (let [job {:workflow c/workflow
                          :catalog catalog
                          :lifecycles lifecycles
                          :task-scheduler :onyx.task-scheduler/balanced}]
                 (onyx.api/submit-job peer-config job)
                 (let [[results] (u/collect-outputs! lifecycles [:write-segments])]
-                  (u/segments-equal? expected-output results))))
-            (catch InterruptedException e
-              (Thread/interrupted))
-            (finally
-             (user/stop))))
-        results (clojure.string/split output #"\n")]
-    (is (= "Starting Onyx development environment" (first results)))
-    (is (= "Stopping Onyx development environment" (last results)))
-    (is (= (into #{} (map (fn [n] (str {:n n})) (range 10)))
-           (into #{} (butlast (rest results)))))))
+                  (u/segments-equal? expected-output results)))))
+          results (clojure.string/split output #"\n")]
+      (is (= "Starting Onyx test environment" (first results)))
+      (is (= "Stopping Onyx test environment" (last results)))
+      (is (= (into #{} (map (fn [n] (str {:n n})) (range 10)))
+             (into #{} (butlast (rest results))))))))

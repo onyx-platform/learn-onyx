@@ -1,8 +1,6 @@
 (ns workshop.jobs.challenge-1-3-test
   (:require [clojure.test :refer [deftest is]]
-            [clojure.java.io :refer [resource]]
-            [com.stuartsierra.component :as component]
-            [workshop.launcher.dev-system :refer [onyx-dev-env]]
+            [onyx.test-helper :refer [with-test-env]]
             [workshop.challenge-1-3 :as c]
             [workshop.workshop-utils :as u]
             [onyx.api]))
@@ -48,13 +46,16 @@
   (concat a-input b-input c-input c-input c-input))
 
 (deftest test-level-1-challenge-3
-  (try
-    (let [catalog (c/build-catalog)
-          lifecycles (c/build-lifecycles)]
-      (user/go (u/n-peers catalog c/workflow))
+  (let [cluster-id (java.util.UUID/randomUUID)
+        env-config (u/load-env-config cluster-id)
+        peer-config (u/load-peer-config cluster-id)
+        catalog (c/build-catalog)
+        lifecycles (c/build-lifecycles)
+        n-peers (u/n-peers catalog c/workflow)]
+    (with-test-env
+      [test-env [n-peers env-config peer-config]]
       (u/bind-inputs! lifecycles {:A a-input :B b-input :C c-input})
-      (let [peer-config (u/load-peer-config (:onyx-id user/system))
-            job {:workflow c/workflow
+      (let [job {:workflow c/workflow
                  :catalog catalog
                  :lifecycles lifecycles
                  :task-scheduler :onyx.task-scheduler/balanced}]
@@ -62,8 +63,4 @@
         (let [[j-actual k-actual l-actual] (u/collect-outputs! lifecycles [:J :K :L])]
           (u/segments-equal? j-expected-output j-actual)
           (u/segments-equal? k-expected-output k-actual)
-          (u/segments-equal? l-expected-output l-actual))))
-    (catch InterruptedException e
-      (Thread/interrupted))
-    (finally
-     (user/stop))))
+          (u/segments-equal? l-expected-output l-actual))))))
