@@ -1,23 +1,16 @@
 (ns user
-  (:require [clojure.tools.namespace.repl :refer [refresh set-refresh-dirs]]
-            [com.stuartsierra.component :as component]
-            [workshop.launcher.dev-system :refer [onyx-dev-env]]))
+  (:require [clojure.tools.namespace.repl :refer [refresh set-refresh-dirs]]))
 
 (set-refresh-dirs "src" "test")
 
-(def system nil)
+(defn init [])
 
-(defn init [n-peers]
-  (alter-var-root #'system (constantly (onyx-dev-env n-peers))))
+(defn start [])
 
-(defn start []
-  (alter-var-root #'system component/start))
+(defn stop [])
 
-(defn stop []
-  (alter-var-root #'system (fn [s] (when s (component/stop s)))))
-
-(defn go [n-peers]
-  (init n-peers)
+(defn go []
+  (init)
   (start))
 
 (defn reset []
