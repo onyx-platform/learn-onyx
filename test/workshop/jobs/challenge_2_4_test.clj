@@ -27,25 +27,25 @@
         peer-config (u/load-peer-config cluster-id)
         catalog (c/build-catalog)
         lifecycles (c/build-lifecycles)
-        n-peers 5])
-  (let [stdout
-        (with-out-str
-          (with-test-env
-            [test-env [n-peers env-config peer-config]]
-            (u/bind-inputs! lifecycles {:read-segments input})
-            (let [job {:workflow c/workflow
-                       :catalog catalog
-                       :lifecycles lifecycles
-                       :task-scheduler :onyx.task-scheduler/balanced}]
-              (onyx.api/submit-job peer-config job)
-              (let [[results] (u/collect-outputs! lifecycles [:write-segments])]
-                (u/segments-equal? expected-output results)))))
-        results (clojure.string/split stdout #"\n")]
-    (is (= "Starting Onyx development environment" (first results)))
-    (is (= "Stopping Onyx development environment" (last results)))
-    (is (= ["Peer executing task :identity"
-            "Peer executing task :identity"
-            "Peer executing task :identity"
-            "Peer executing task :read-segments"
-            "Peer executing task :write-segments"]
-           (sort (butlast (rest results)))))))
+        n-peers 5]
+    (let [stdout
+          (with-out-str
+            (with-test-env
+              [test-env [n-peers env-config peer-config]]
+              (u/bind-inputs! lifecycles {:read-segments input})
+              (let [job {:workflow c/workflow
+                         :catalog catalog
+                         :lifecycles lifecycles
+                         :task-scheduler :onyx.task-scheduler/balanced}]
+                (onyx.api/submit-job peer-config job)
+                (let [[results] (u/collect-outputs! lifecycles [:write-segments])]
+                  (u/segments-equal? expected-output results)))))
+          results (clojure.string/split stdout #"\n")]
+      (is (= "Starting Onyx development environment" (first results)))
+      (is (= "Stopping Onyx development environment" (last results)))
+      (is (= ["Peer executing task :identity"
+              "Peer executing task :identity"
+              "Peer executing task :identity"
+              "Peer executing task :read-segments"
+              "Peer executing task :write-segments"]
+             (sort (butlast (rest results))))))))

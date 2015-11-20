@@ -40,17 +40,17 @@
         catalog (c/build-catalog)
         lifecycles (c/build-lifecycles)
         outputs [:admins-output :users-output :guests-output]
-        n-peers (u/n-peers catalog c/workflow)])
-  (with-test-env
-    [test-env [n-peers env-config peer-config]]
-    (u/bind-inputs! lifecycles {:read-segments input})
-    (let [job {:workflow c/workflow
-               :catalog catalog
-               :lifecycles lifecycles
-               :flow-conditions c/flow-conditions
-               :task-scheduler :onyx.task-scheduler/balanced}]
-      (onyx.api/submit-job peer-config job)
-      (let [[admins users guests] (u/collect-outputs! lifecycles outputs)]
-        (u/segments-equal? expected-admins admins)
-        (u/segments-equal? expected-users users)
-        (u/segments-equal? expected-guests guests)))))
+        n-peers (u/n-peers catalog c/workflow)]
+    (with-test-env
+      [test-env [n-peers env-config peer-config]]
+      (u/bind-inputs! lifecycles {:read-segments input})
+      (let [job {:workflow c/workflow
+                 :catalog catalog
+                 :lifecycles lifecycles
+                 :flow-conditions c/flow-conditions
+                 :task-scheduler :onyx.task-scheduler/balanced}]
+        (onyx.api/submit-job peer-config job)
+        (let [[admins users guests] (u/collect-outputs! lifecycles outputs)]
+          (u/segments-equal? expected-admins admins)
+          (u/segments-equal? expected-users users)
+          (u/segments-equal? expected-guests guests))))))

@@ -27,21 +27,21 @@
         peer-config (u/load-peer-config cluster-id)
         catalog (c/build-catalog)
         lifecycles (c/build-lifecycles)
-        n-peers (u/n-peers catalog c/workflow)])
-  (let [output
-        (with-out-str
-          (with-test-env
-            [test-env [n-peers env-config peer-config]]
-            (u/bind-inputs! lifecycles {:read-segments input})
-            (let [job {:workflow c/workflow
-                       :catalog catalog
-                       :lifecycles lifecycles
-                       :task-scheduler :onyx.task-scheduler/balanced}]
-              (onyx.api/submit-job peer-config job)
-              (let [[results] (u/collect-outputs! lifecycles [:write-segments])]
-                (u/segments-equal? expected-output results)))))
-        results (clojure.string/split output #"\n")]
-    (is (= "Starting Onyx development environment" (first results)))
-    (is (= "Stopping Onyx development environment" (last results)))
-    (is (= (into #{} (map (fn [n] (str {:n n})) (range 10)))
-           (into #{} (butlast (rest results)))))))
+        n-peers (u/n-peers catalog c/workflow)]
+    (let [output
+          (with-out-str
+            (with-test-env
+              [test-env [n-peers env-config peer-config]]
+              (u/bind-inputs! lifecycles {:read-segments input})
+              (let [job {:workflow c/workflow
+                         :catalog catalog
+                         :lifecycles lifecycles
+                         :task-scheduler :onyx.task-scheduler/balanced}]
+                (onyx.api/submit-job peer-config job)
+                (let [[results] (u/collect-outputs! lifecycles [:write-segments])]
+                  (u/segments-equal? expected-output results)))))
+          results (clojure.string/split output #"\n")]
+      (is (= "Starting Onyx development environment" (first results)))
+      (is (= "Stopping Onyx development environment" (last results)))
+      (is (= (into #{} (map (fn [n] (str {:n n})) (range 10)))
+             (into #{} (butlast (rest results))))))))
