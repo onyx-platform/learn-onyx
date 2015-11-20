@@ -66,8 +66,7 @@
     (with-test-env
       [test-env [n-peers env-config peer-config]]
       (u/bind-inputs! lifecycles {:read-segments input})
-      (let [peer-config (u/load-peer-config (:onyx-id user/system))
-            job {:workflow c/workflow
+      (let [job {:workflow c/workflow
                  :catalog catalog
                  :lifecycles lifecycles
                  :task-scheduler :onyx.task-scheduler/balanced}]
