@@ -41,7 +41,7 @@
                 (let [[results] (u/collect-outputs! lifecycles [:write-segments])]
                   (u/segments-equal? expected-output results)))))
           results (clojure.string/split output #"\n")]
-      (is (= "Starting Onyx development environment" (first results)))
-      (is (= "Stopping Onyx development environment" (last results)))
+      (is (= "Starting Onyx test environment" (first results)))
+      (is (= "Stopping Onyx test environment" (last results)))
       (is (= (into #{} (map (fn [n] (str {:n n})) (range 10)))
              (into #{} (butlast (rest results))))))))

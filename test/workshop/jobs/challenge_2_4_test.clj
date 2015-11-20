@@ -41,8 +41,8 @@
                 (let [[results] (u/collect-outputs! lifecycles [:write-segments])]
                   (u/segments-equal? expected-output results)))))
           results (clojure.string/split stdout #"\n")]
-      (is (= "Starting Onyx development environment" (first results)))
-      (is (= "Stopping Onyx development environment" (last results)))
+      (is (= "Starting Onyx test environment" (first results)))
+      (is (= "Stopping Onyx test environment" (last results)))
       (is (= ["Peer executing task :identity"
               "Peer executing task :identity"
               "Peer executing task :identity"
