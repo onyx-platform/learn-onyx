@@ -1,3 +1,4 @@
 {:onyx.peer/job-scheduler :onyx.job-scheduler/greedy
- :onyx.messaging/impl :core.async
+ :onyx.messaging/impl :aeron
+ :onyx.messaging/peer-port 40199
  :onyx.messaging/bind-addr "localhost"}
