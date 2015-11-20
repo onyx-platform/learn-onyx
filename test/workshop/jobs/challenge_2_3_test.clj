@@ -1,8 +1,6 @@
 (ns workshop.jobs.challenge-2-3-test
   (:require [clojure.test :refer [deftest is]]
-            [clojure.java.io :refer [resource]]
-            [com.stuartsierra.component :as component]
-            [workshop.launcher.dev-system :refer [onyx-dev-env]]
+            [onyx.test-helper :refer [with-test-env]]
             [workshop.challenge-2-3 :as c]
             [workshop.workshop-utils :as u]
             [onyx.api]))
@@ -36,7 +34,7 @@
 ;; so if you need a bit more of an explanation, you might want to consult
 ;; the documentation on this feature for hints:
 ;;
-;; https://github.com/onyx-platform/onyx/blob/0.7.x/doc/user-guide/functions.md#grouping--aggregation
+;; https://github.com/onyx-platform/onyx/blob/0.8.x/doc/user-guide/functions.md#grouping--aggregation
 ;;
 ;; Try it with:
 ;;
@@ -57,27 +55,26 @@
 (def expected-output input)
 
 (deftest test-level-2-challenge-3
-  (try
+  (let [cluster-id (java.util.UUID/randomUUID)
+        env-config (u/load-env-config cluster-id)
+        peer-config (u/load-peer-config cluster-id)
+        catalog (c/build-catalog)
+        lifecycles (c/build-lifecycles)
+        n-peers (u/n-peers catalog c/workflow)])
+  (with-test-env
+    [test-env [n-peers env-config peer-config]]
     (let [results
           (with-out-str
-            (let [catalog (c/build-catalog)
-                  lifecycles (c/build-lifecycles)]
-              (user/go (u/n-peers catalog c/workflow))
-              (u/bind-inputs! lifecycles {:read-segments input})
-              (let [peer-config (u/load-peer-config (:onyx-id user/system))
-                    job {:workflow c/workflow
-                         :catalog catalog
-                         :lifecycles lifecycles
-                         :task-scheduler :onyx.task-scheduler/balanced}]
-                (onyx.api/submit-job peer-config job)
-                (let [[results] (u/collect-outputs! lifecycles [:write-segments])]
-                  (u/segments-equal? expected-output results)))))
+            (u/bind-inputs! lifecycles {:read-segments input})
+            (let [job {:workflow c/workflow
+                       :catalog catalog
+                       :lifecycles lifecycles
+                       :task-scheduler :onyx.task-scheduler/balanced}]
+              (onyx.api/submit-job peer-config job)
+              (let [[results] (u/collect-outputs! lifecycles [:write-segments])]
+                (u/segments-equal? expected-output results))))
           _ (println results)
           lines (butlast (rest (clojure.string/split results #"\n")))
           groups (group-by #(last (re-find #":user-id (\d+).*" %)) lines)]
       (doseq [k (keys groups)]
-        (is (apply = (map #(last (re-find #"Peer (\w+-\w+-\w+-\w+-\w+).*" %)) (get groups k))))))
-    (catch InterruptedException e
-      (Thread/interrupted))
-    (finally
-     (user/stop))))
+        (is (apply = (map #(last (re-find #"Peer (\w+-\w+-\w+-\w+-\w+).*" %)) (get groups k))))))))
