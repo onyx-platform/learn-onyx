@@ -60,21 +60,21 @@
         peer-config (u/load-peer-config cluster-id)
         catalog (c/build-catalog)
         lifecycles (c/build-lifecycles)
-        n-peers (u/n-peers catalog c/workflow)])
-  (with-test-env
-    [test-env [n-peers env-config peer-config]]
-    (let [results
-          (with-out-str
-            (u/bind-inputs! lifecycles {:read-segments input})
-            (let [job {:workflow c/workflow
-                       :catalog catalog
-                       :lifecycles lifecycles
-                       :task-scheduler :onyx.task-scheduler/balanced}]
-              (onyx.api/submit-job peer-config job)
-              (let [[results] (u/collect-outputs! lifecycles [:write-segments])]
-                (u/segments-equal? expected-output results))))
-          _ (println results)
-          lines (butlast (rest (clojure.string/split results #"\n")))
-          groups (group-by #(last (re-find #":user-id (\d+).*" %)) lines)]
-      (doseq [k (keys groups)]
-        (is (apply = (map #(last (re-find #"Peer (\w+-\w+-\w+-\w+-\w+).*" %)) (get groups k))))))))
+        n-peers (u/n-peers catalog c/workflow)]
+    (with-test-env
+      [test-env [n-peers env-config peer-config]]
+      (let [results
+            (with-out-str
+              (u/bind-inputs! lifecycles {:read-segments input})
+              (let [job {:workflow c/workflow
+                         :catalog catalog
+                         :lifecycles lifecycles
+                         :task-scheduler :onyx.task-scheduler/balanced}]
+                (onyx.api/submit-job peer-config job)
+                (let [[results] (u/collect-outputs! lifecycles [:write-segments])]
+                  (u/segments-equal? expected-output results))))
+            _ (println results)
+            lines (butlast (rest (clojure.string/split results #"\n")))
+            groups (group-by #(last (re-find #":user-id (\d+).*" %)) lines)]
+        (doseq [k (keys groups)]
+          (is (apply = (map #(last (re-find #"Peer (\w+-\w+-\w+-\w+-\w+).*" %)) (get groups k)))))))))

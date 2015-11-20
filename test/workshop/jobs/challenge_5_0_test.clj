@@ -37,16 +37,16 @@
         catalog (c/build-catalog)
         lifecycles (c/build-lifecycles)
         outputs [:write-even-segments :write-odd-segments]
-        n-peers (u/n-peers catalog c/workflow)])
-  (with-test-env
-    [test-env [n-peers env-config peer-config]]
-    (u/bind-inputs! lifecycles {:read-segments input})
-    (let [job {:workflow c/workflow
-               :catalog catalog
-               :lifecycles lifecycles
-               :flow-conditions c/flow-conditions
-               :task-scheduler :onyx.task-scheduler/balanced}]
-      (onyx.api/submit-job peer-config job)
-      (let [[even-outputs odd-outputs] (u/collect-outputs! lifecycles outputs)]
-        (u/segments-equal? expected-output-squared-evens even-outputs)
-        (u/segments-equal? expected-output-squared-odds odd-outputs)))))
+        n-peers (u/n-peers catalog c/workflow)]
+    (with-test-env
+      [test-env [n-peers env-config peer-config]]
+      (u/bind-inputs! lifecycles {:read-segments input})
+      (let [job {:workflow c/workflow
+                 :catalog catalog
+                 :lifecycles lifecycles
+                 :flow-conditions c/flow-conditions
+                 :task-scheduler :onyx.task-scheduler/balanced}]
+        (onyx.api/submit-job peer-config job)
+        (let [[even-outputs odd-outputs] (u/collect-outputs! lifecycles outputs)]
+          (u/segments-equal? expected-output-squared-evens even-outputs)
+          (u/segments-equal? expected-output-squared-odds odd-outputs))))))

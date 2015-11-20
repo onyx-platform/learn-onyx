@@ -29,18 +29,18 @@
         peer-config (u/load-peer-config cluster-id)
         catalog (c/build-catalog)
         lifecycles (c/build-lifecycles)
-        n-peers (u/n-peers catalog c/workflow)])
-  (let [results
-        (with-out-str
-          (with-test-env
-            [test-env [n-peers env-config peer-config]]
-            (u/bind-inputs! lifecycles {:read-segments input})
-            (let [job {:workflow c/workflow
-                       :catalog catalog
-                       :lifecycles lifecycles
-                       :task-scheduler :onyx.task-scheduler/balanced}]
-              (onyx.api/submit-job peer-config job)
-              (let [[results] (u/collect-outputs! lifecycles [:write-segments])]
-                (u/segments-equal? expected-output results)))))
-        lines (clojure.string/split results #"\n")]
-    (is (= "Maximum value was: 99" (last lines)))))
+        n-peers (u/n-peers catalog c/workflow)]
+    (let [results
+          (with-out-str
+            (with-test-env
+              [test-env [n-peers env-config peer-config]]
+              (u/bind-inputs! lifecycles {:read-segments input})
+              (let [job {:workflow c/workflow
+                         :catalog catalog
+                         :lifecycles lifecycles
+                         :task-scheduler :onyx.task-scheduler/balanced}]
+                (onyx.api/submit-job peer-config job)
+                (let [[results] (u/collect-outputs! lifecycles [:write-segments])]
+                  (u/segments-equal? expected-output results)))))
+          lines (clojure.string/split results #"\n")]
+      (is (= "Maximum value was: 99" (last lines))))))

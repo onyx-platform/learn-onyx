@@ -51,16 +51,16 @@
         peer-config (u/load-peer-config cluster-id)
         catalog (c/build-catalog)
         lifecycles (c/build-lifecycles)
-        n-peers (u/n-peers catalog c/workflow)])
-  (with-test-env
-    [test-env [n-peers env-config peer-config]]
-    (u/bind-inputs! lifecycles {:A a-input :B b-input :C c-input})
-    (let [job {:workflow c/workflow
-               :catalog catalog
-               :lifecycles lifecycles
-               :task-scheduler :onyx.task-scheduler/balanced}]
-      (onyx.api/submit-job peer-config job)
-      (let [[j-actual k-actual l-actual] (u/collect-outputs! lifecycles [:J :K :L])]
-        (u/segments-equal? j-expected-output j-actual)
-        (u/segments-equal? k-expected-output k-actual)
-        (u/segments-equal? l-expected-output l-actual)))))
+        n-peers (u/n-peers catalog c/workflow)]
+    (with-test-env
+      [test-env [n-peers env-config peer-config]]
+      (u/bind-inputs! lifecycles {:A a-input :B b-input :C c-input})
+      (let [job {:workflow c/workflow
+                 :catalog catalog
+                 :lifecycles lifecycles
+                 :task-scheduler :onyx.task-scheduler/balanced}]
+        (onyx.api/submit-job peer-config job)
+        (let [[j-actual k-actual l-actual] (u/collect-outputs! lifecycles [:J :K :L])]
+          (u/segments-equal? j-expected-output j-actual)
+          (u/segments-equal? k-expected-output k-actual)
+          (u/segments-equal? l-expected-output l-actual))))))

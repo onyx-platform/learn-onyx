@@ -53,15 +53,15 @@
         peer-config (u/load-peer-config cluster-id)
         catalog (c/build-catalog)
         lifecycles (c/build-lifecycles)
-        n-peers (u/n-peers catalog c/workflow)])
-  (with-test-env
-    [test-env [n-peers env-config peer-config]]
-    (u/bind-inputs! lifecycles {:read-segments input})
-    (let [job {:workflow c/workflow
-               :catalog catalog
-               :lifecycles lifecycles
-               :flow-conditions c/flow-conditions
-               :task-scheduler :onyx.task-scheduler/balanced}]
-      (onyx.api/submit-job peer-config job)
-      (let [[output] (u/collect-outputs! lifecycles [:write-segments])]
-        (u/segments-equal? expected-output output)))))
+        n-peers (u/n-peers catalog c/workflow)]
+    (with-test-env
+      [test-env [n-peers env-config peer-config]]
+      (u/bind-inputs! lifecycles {:read-segments input})
+      (let [job {:workflow c/workflow
+                 :catalog catalog
+                 :lifecycles lifecycles
+                 :flow-conditions c/flow-conditions
+                 :task-scheduler :onyx.task-scheduler/balanced}]
+        (onyx.api/submit-job peer-config job)
+        (let [[output] (u/collect-outputs! lifecycles [:write-segments])]
+          (u/segments-equal? expected-output output))))))
