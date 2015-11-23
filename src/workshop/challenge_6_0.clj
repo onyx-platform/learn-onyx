@@ -174,6 +174,9 @@
 ;; the state into the atom, which we deref in the tests. We expect
 ;; to see a map with three keys (one for each hour), and every piece
 ;; of the data present exactly once, sinced Fixed windows do not overlap.
+;;
+;; While we use an atom here for ease, this is the ideal place to synchronize
+;; window state to an external database or other 3rd party medium.
 (defn deliver-promise! [event window-id lower-bound upper-bound state]
   (let [lower (java.util.Date. lower-bound)
         upper (java.util.Date. upper-bound)]
