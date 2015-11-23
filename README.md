@@ -94,10 +94,15 @@ Below is the table of contents for the levels and challenges you'll be working t
   - Challenge 2: Create a composite flow conditions predicate
   - Challenge 3: Write an exception handler with flow conditions
   - Challenge 4: Use key exclusion
+- Level 6: Windows and Triggers
+  - Challenge 0: Observe a fixed windowing example
+  - Challenge 1: Create a fixed windowed that counts segments
+  - Challenge 2: Use sliding windows to take an average with discading refinement
+  - Challenge 3: Create a global window with a watermark-based trigger
 
 ## License
 
-Copyright © 2015 Michael Drogalis
+Copyright © 2015 Distributed Masonry LLC
 
 Distributed under the Eclipse Public License either version 1.0 or (at
 your option) any later version.
