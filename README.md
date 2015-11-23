@@ -97,8 +97,8 @@ Below is the table of contents for the levels and challenges you'll be working t
 - Level 6: Windows and Triggers
   - Challenge 0: Observe a fixed windowing example
   - Challenge 1: Create a fixed windowed that maintains a progressive sum
-  - Challenge 2: Use sliding windows to take an average with discading refinement
-  - Challenge 3: Create a global window with a watermark-based trigger
+  - Challenge 2: Use sliding windows to take an average
+  - Challenge 3: Create a global window with a watermark-based trigger and discarding refinements
 
 ## License
 
