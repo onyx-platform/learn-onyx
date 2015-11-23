@@ -98,7 +98,7 @@ Below is the table of contents for the levels and challenges you'll be working t
   - Challenge 0: Observe a fixed windowing example
   - Challenge 1: Create a fixed windowed that maintains a progressive sum
   - Challenge 2: Use sliding windows to take an average
-  - Challenge 3: Create a global window with a watermark-based trigger and discarding refinements
+  - Challenge 3: Create a fixed window with a watermark trigger
 
 ## License
 

@@ -1,4 +1,4 @@
-(ns workshop.challenge-6-2
+(ns workshop.challenge-6-3
   (:require [workshop.workshop-utils :as u]))
 
 ;;; Workflows ;;;
@@ -40,7 +40,7 @@
 
 (defn build-lifecycles []
   [{:lifecycle/task :read-segments
-    :lifecycle/calls :workshop.challenge-6-2/reader-lifecycle
+    :lifecycle/calls :workshop.challenge-6-3/reader-lifecycle
     :core.async/id (java.util.UUID/randomUUID)
     :onyx/doc "Injects the core.async reader channel"}
 
@@ -53,30 +53,31 @@
 (def windows
   [{:window/id :collect-segments
     :window/task :bucket-page-views
-    :window/type :sliding
-    :window/aggregation [:onyx.windowing.aggregation/average :bytes-sent]
+    :window/type :fixed
+    :window/aggregation :onyx.windowing.aggregation/conj
     :window/window-key :event-time
     :window/range [1 :hour]
-    :window/slide [30 :minutes]
-    :window/doc "Averages the byte values over 1 hour sliding windows, sliding every 30 minutes."}])
+    :window/doc "Conj's segments in one hour fixed windows."}])
 
 ;; <<< END FILL ME IN PART 1 >>>
+
+;; <<< BEGIN FILL ME IN PART 2 >>>
 
 (def triggers
   [{:trigger/window-id :collect-segments
     :trigger/refinement :accumulating
-    :trigger/on :segment
-    :trigger/fire-all-extents? true
-    :trigger/threshold [10 :elements]
+    :trigger/on :watermark
     :trigger/sync ::deliver-promise!
-    :trigger/doc "Fires against all extents every 10 segments processed."}])
+    :trigger/doc "Fires when this window's watermark has been exceeded"}])
+
+;; <<< END FILL ME IN PART 2 >>>
 
 (def fired-window-state (atom {}))
 
 (defn deliver-promise! [event window-id lower-bound upper-bound state]
-  ;; <<< BEGIN FILL ME IN PART 2 >>>
+  ;; <<< BEGIN FILL ME IN PART 3 >>>
   (let [lower (java.util.Date. lower-bound)
         upper (java.util.Date. upper-bound)]
     (swap! fired-window-state assoc [lower upper] state))
-  ;; <<< END FILL ME IN PART 2 >>>
+  ;; <<< END FILL ME IN PART 3 >>>
   )

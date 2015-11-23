@@ -59,7 +59,7 @@
     :window/range [2 :hours]
     :window/doc "Sums byte values in two hour fixed windows."}])
 
-;; <<< END FILL ME IN PART 1>>>
+;; <<< END FILL ME IN PART 1 >>>
 
 (def triggers
   [{:trigger/window-id :collect-segments
