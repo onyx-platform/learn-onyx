@@ -5,5 +5,5 @@ general:
 
 test:
   override:
-    - lein test
+    - lein test:
         timeout: 240
