@@ -1,0 +1,9 @@
+general:
+  branches:
+    ignore:
+      - master
+
+test:
+  override:
+    - lein test
+        timeout: 240
