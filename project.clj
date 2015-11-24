@@ -3,7 +3,7 @@
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.7.0"]
                  [org.clojure/core.async "0.1.346.0-17112a-alpha"]
-                 [org.onyxplatform/onyx "0.8.1-SNAPSHOT"]
+                 [org.onyxplatform/onyx "0.8.1-alpha1"]
                  [org.slf4j/slf4j-api "1.7.12"]
                  [org.slf4j/slf4j-nop "1.7.12"]]
   :profiles {:dev {:dependencies [[org.clojure/tools.namespace "0.2.10"]
