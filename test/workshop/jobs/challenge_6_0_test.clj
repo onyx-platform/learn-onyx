@@ -18,7 +18,7 @@
 ;; tasks, only to fail later in the workflow. The segments would then pass
 ;; through your stateful tasks again. Even if Onyx didn't use this specific
 ;; technique for fault tolerance, this would be still be problematic because
-;; it is provably impossible execute a distributed instruction exactly once -
+;; it is provably impossible to execute a distributed instruction exactly once -
 ;; see the Two Generals problem for why this is the case.
 
 ;; Clearly, many computations need to have perfectly correct aggregate answers,
