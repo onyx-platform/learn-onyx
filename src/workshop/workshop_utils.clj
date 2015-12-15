@@ -62,13 +62,17 @@
 
 (defonce channels (atom {}))
 
-(defn get-input-channel [id]
+(defn get-channel [id size]
   (or (get @channels id)
-      (swap! channels assoc id (chan input-channel-capacity))))
+      (let [ch (chan size)]
+        (swap! channels assoc id ch)
+        ch)))
+
+(defn get-input-channel [id]
+  (get-channel id input-channel-capacity))
 
 (defn get-output-channel [id]
-  (or (get @channels id)
-      (swap! channels assoc id (chan output-channel-capacity))))
+  (get-channel id output-channel-capacity))
 
 (defn channel-id-for [lifecycles task-name]
   (->> lifecycles
