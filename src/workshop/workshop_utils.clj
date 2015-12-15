@@ -60,13 +60,15 @@
 
 (def output-channel-capacity (inc input-channel-capacity))
 
-(def get-input-channel
-  (memoize
-   (fn [id] (chan input-channel-capacity))))
+(defonce channels (atom {}))
 
-(def get-output-channel
-  (memoize
-   (fn [id] (chan (sliding-buffer output-channel-capacity)))))
+(defn get-input-channel [id]
+  (or (get @channels id)
+      (swap! channels assoc id (chan input-channel-capacity))))
+
+(defn get-output-channel [id]
+  (or (get @channels id)
+      (swap! channels assoc id (chan output-channel-capacity))))
 
 (defn channel-id-for [lifecycles task-name]
   (->> lifecycles
