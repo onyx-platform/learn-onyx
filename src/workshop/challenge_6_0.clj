@@ -165,9 +165,8 @@
 (def fired-window-state (atom {}))
 
 ;; deliver-promise! is the function refered to by :trigger/sync above.
-;; It takes 5 arguments - the event map, a "window id", the lower bound
-;; for this window extent, the upper bound for this window extent, and
-;; the accreted state. The window ID is an internally unique to track
+;; Syncing functions take 5 arguments.
+;; The window ID is an internally unique value used to track
 ;; this specific window extent. The upper and lower bounds are, in this
 ;; case, UNIX timestamps indicating the boundaries for this extent. We
 ;; convert these to java.util.Date objects for readability. We swap
@@ -177,7 +176,7 @@
 ;;
 ;; While we use an atom here for ease, this is the ideal place to synchronize
 ;; window state to an external database or other 3rd party medium.
-(defn deliver-promise! [event window-id lower-bound upper-bound state]
+(defn deliver-promise! [event window trigger {:keys [window-id lower-bound upper-bound]} state]
   (let [lower (java.util.Date. lower-bound)
         upper (java.util.Date. upper-bound)]
     (swap! fired-window-state assoc [lower upper] (into #{} state))))
