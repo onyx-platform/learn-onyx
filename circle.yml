@@ -3,6 +3,10 @@ general:
     ignore:
       - master
 
+machine:
+  java:
+    version: oraclejdk8
+
 dependencies:
   override:
     - echo '{:user {:plugins [[lein-voom "0.1.0-20150822_000839-g763d315"]]}}' > ~/.lein/profiles.clj
