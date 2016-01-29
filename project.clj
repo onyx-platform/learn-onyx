@@ -1,9 +1,9 @@
-(defproject workshop "0.8.6"
+(defproject workshop "0.8.7-alpha2"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.7.0"]
                  [org.clojure/core.async "0.2.374"]
-                 [org.onyxplatform/onyx "0.8.6"]
+                 [org.onyxplatform/onyx "0.8.7-alpha2"]
                  [org.slf4j/slf4j-api "1.7.12"]
                  [org.slf4j/slf4j-nop "1.7.12"]]
   :profiles {:dev {:dependencies [[org.clojure/tools.namespace "0.2.10"]
