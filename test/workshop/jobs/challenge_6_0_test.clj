@@ -29,10 +29,10 @@
 ;; can be put together merits a close read of the documentation.
 
 ;; You can read about Windowing at:
-;; http://onyx-platform.gitbooks.io/onyx/content/doc/user-guide/windowing.html
+;; http://www.onyxplatform.org/docs/user-guide/latest/windowing.html
 
 ;; After you've read about Windowing, it's important to understand Triggers:
-;; http://onyx-platform.gitbooks.io/onyx/content/doc/user-guide/triggers.html
+;; http://www.onyxplatform.org/docs/user-guide/latest/triggers.html
 
 ;; You'll notice that in this example, we use more stateful constructs like
 ;; atoms and promises. Some of this is used to coordindate knowledge of
