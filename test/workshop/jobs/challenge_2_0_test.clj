@@ -10,7 +10,7 @@
 ;; how to parameterize them in a functional and non-functional manner.
 ;;
 ;; Onyx's information model is documented in the user guide:
-;; http://onyx-platform.gitbooks.io/onyx/content/doc/user-guide/information-model.html
+;; http://www.onyxplatform.org/docs/user-guide/latest/information-model.html
 ;;
 ;;
 ;; This challenge is an already-working example to get your started.
