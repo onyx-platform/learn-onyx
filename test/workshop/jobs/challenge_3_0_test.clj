@@ -12,7 +12,7 @@
 ;; we learned earlier.
 ;;
 ;; Onyx has a chapter in its user guide dedicated to functions:
-;; http://onyx-platform.gitbooks.io/onyx/content/doc/user-guide/functions.html
+;; http://www.onyxplatform.org/docs/user-guide/latest/functions.html
 ;;
 ;; This challenge is an already-working example. Explore the functions
 ;; and comments in the corresponding source file about the contracts

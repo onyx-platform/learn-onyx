@@ -15,7 +15,7 @@
 ;; non-serializable parameters, such as database connections, into functions.
 ;;
 ;; Onyx has an entire chapter in the user guide dedicated to lifecycles:
-;; http://onyx-platform.gitbooks.io/onyx/content/doc/user-guide/lifecycles.html
+;; http://www.onyxplatform.org/docs/user-guide/latest/lifecycles.html
 ;;
 ;; This challenge is an already-working example. Explore the lifecycles
 ;; and comments in the corresponding source file about the contracts
