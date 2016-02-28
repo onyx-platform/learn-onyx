@@ -7,10 +7,17 @@
 
 ;; In this challenge, we're going to log every segment that
 ;; we see after it's processed by the :times-three task with
-;; the lifecycle hook :after-batch. Obtain the segments via
-;; the key :onyx.core/batch in the event map. This key retrieves
-;; the segments that enter the task - before processing.
-;; Iterate over each segment with `doseq` and log its value.
+;; the lifecycle hook :after-batch. We can obtain a reference
+;; to the segments through the event map. The event map contains
+;; lots of useful values pertaining to the currently running task.
+;; We can access the segments by first looking at the :onyx.core/batch
+;; key. This value is itself a sequence of Clojure Records. The Records,
+;; which can uniformly be treated as maps in Clojure, have a key :message
+;; on each them. We use a Record to increase performance - but that's
+;; mostly a side-tangent and is unimportant to accomplishing the exercise.
+;; Iterate over each segment with `doseq` to print out the segment's value.
+;; The segments under the :onyx.core/batch key are the segment values *before*
+;; the :onyx/fn function transforms them.
 ;;
 ;; Try it with:
 ;;
