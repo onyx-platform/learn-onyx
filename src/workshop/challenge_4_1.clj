@@ -46,6 +46,10 @@
 
 (def logger (agent nil))
 
+;; <<< BEGIN FILL ME IN FOR log-segments >>>
+
+;; <<< END FILL ME IN >>>
+
 (defn inject-reader-ch [event lifecycle]
   {:core.async/chan (u/get-input-channel (:core.async/id lifecycle))})
 
@@ -59,10 +63,6 @@
   {:lifecycle/before-task-start inject-writer-ch})
 
 ;; <<< BEGIN FILL ME IN FOR logger-lifecycle calls >>>
-
-;; <<< END FILL ME IN >>>
-
-;; <<< BEGIN FILL ME IN FOR log-segments >>>
 
 ;; <<< END FILL ME IN >>>
 
