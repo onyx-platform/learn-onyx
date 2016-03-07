@@ -9,8 +9,8 @@
 ;; possible routes where data can flow through your job. You can think
 ;; of this as isolating the "structure" of your computation.
 ;;
-;; Onyx's information model is documented in the user guide:
-;; http://www.onyxplatform.org/docs/user-guide/latest/information-model.html
+;; Onyx's information model is documented in the cheat sheet: 
+;; http://www.onyxplatform.org/docs/cheat-sheet/latest/
 ;;
 ;; This challenge is an already-working example to get your started.
 ;; Try it with:
