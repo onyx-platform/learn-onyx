@@ -50,4 +50,4 @@
                 (let [[results] (u/collect-outputs! lifecycles [:write-segments])]
                   (u/segments-equal? expected-output results)))))
           lines (clojure.string/split results #"\n")]
-      (is (= "Summation was: 4950" (last lines))))))
+      (is (contains? (set lines) "Summation was: 4950")))))
