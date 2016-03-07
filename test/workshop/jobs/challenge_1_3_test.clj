@@ -1,6 +1,6 @@
 (ns workshop.jobs.challenge-1-3-test
   (:require [clojure.test :refer [deftest is]]
-            [onyx.test-helper :refer [with-test-env]]
+            [onyx.test-helper :refer [with-test-env feedback-exception!]]
             [workshop.challenge-1-3 :as c]
             [workshop.workshop-utils :as u]
             [onyx.api]))
@@ -58,8 +58,9 @@
       (let [job {:workflow c/workflow
                  :catalog catalog
                  :lifecycles lifecycles
-                 :task-scheduler :onyx.task-scheduler/balanced}]
-        (onyx.api/submit-job peer-config job)
+                 :task-scheduler :onyx.task-scheduler/balanced}
+            job-id (:job-id (onyx.api/submit-job peer-config job))]
+        (feedback-exception! peer-config job-id)
         (let [[j-actual k-actual l-actual] (u/collect-outputs! lifecycles [:J :K :L])]
           (u/segments-equal? j-expected-output j-actual)
           (u/segments-equal? k-expected-output k-actual)
