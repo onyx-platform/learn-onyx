@@ -1,6 +1,6 @@
 (ns workshop.jobs.challenge-6-1-test
   (:require [clojure.test :refer [deftest is]]
-            [onyx.test-helper :refer [with-test-env]]
+            [onyx.test-helper :refer [with-test-env feedback-exception!]]
             [workshop.challenge-6-1 :as c]
             [workshop.workshop-utils :as u]
             [onyx.api]))
@@ -82,7 +82,8 @@
                  :lifecycles lifecycles
                  :windows c/windows
                  :triggers c/triggers
-                 :task-scheduler :onyx.task-scheduler/balanced}]
-        (onyx.api/submit-job peer-config job)
+                 :task-scheduler :onyx.task-scheduler/balanced}
+            job-id (:job-id (onyx.api/submit-job peer-config job))]
+        (feedback-exception! peer-config job-id)
         @p
         (is (= expected-output @c/fired-window-state))))))
