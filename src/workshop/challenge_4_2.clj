@@ -44,12 +44,10 @@
 
 ;;; Lifecycles ;;;
 
-(def logger (agent nil))
-
-;; <<< BEGIN FILL ME IN >>>
+(def state (atom nil))
 
 (defn inject-state [event lifecycle]
-  {:challenge/state (atom nil)})
+  {:challenge/state state})
 
 (defn compute-max [event lifecycle]
   (when (seq (:onyx.core/batch event))
@@ -61,10 +59,6 @@
                  state)))))
   {})
 
-(defn write-max-segment [event lifecycle]
-  (send logger (fn [_] (println "Maximum value was:" @(:challenge/state event))))
-  {})
-
 (defn inject-reader-ch [event lifecycle]
   {:core.async/chan (u/get-input-channel (:core.async/id lifecycle))})
 
@@ -73,8 +67,7 @@
 
 (def aggregate-lifecycle
   {:lifecycle/before-task-start inject-state
-   :lifecycle/after-batch compute-max
-   :lifecycle/after-task-stop write-max-segment})
+   :lifecycle/after-batch compute-max})
 
 (def reader-lifecycle
   {:lifecycle/before-task-start inject-reader-ch})
