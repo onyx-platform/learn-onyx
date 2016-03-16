@@ -11,8 +11,7 @@
 ;; the :before-task-start lifecycle hook.
 ;; After each batch is processed, find the maximum value
 ;; that we saw in the :identity task. After the task is finished,
-;; print the maximum value that we found to standard out.
-;; Use the atom for maintain the latest maximum value.
+;; we'll query the atom to find the maximum value.
 ;;
 ;; Try it with:
 ;;
@@ -30,18 +29,16 @@
         catalog (c/build-catalog)
         lifecycles (c/build-lifecycles)
         n-peers (u/n-peers catalog c/workflow)]
-    (let [results
-          (with-out-str
-            (with-test-env
-              [test-env [n-peers env-config peer-config]]
-              (u/bind-inputs! lifecycles {:read-segments input})
-              (let [job {:workflow c/workflow
-                         :catalog catalog
-                         :lifecycles lifecycles
-                         :task-scheduler :onyx.task-scheduler/balanced}
-                    job-id (:job-id (onyx.api/submit-job peer-config job))]
-                (feedback-exception! peer-config job-id)
-                (let [[results] (u/collect-outputs! lifecycles [:write-segments])]
-                  (u/segments-equal? expected-output results)))))
-          lines (clojure.string/split results #"\n")]
-      (is (= "Maximum value was: 99" (last lines))))))
+    (reset! c/state nil)
+    (with-test-env
+      [test-env [n-peers env-config peer-config]]
+      (u/bind-inputs! lifecycles {:read-segments input})
+      (let [job {:workflow c/workflow
+                 :catalog catalog
+                 :lifecycles lifecycles
+                 :task-scheduler :onyx.task-scheduler/balanced}
+            job-id (:job-id (onyx.api/submit-job peer-config job))]
+        (feedback-exception! peer-config job-id)
+        (let [[results] (u/collect-outputs! lifecycles [:write-segments])]
+          (u/segments-equal? expected-output results)
+          (is (= 99 @c/state)))))))
