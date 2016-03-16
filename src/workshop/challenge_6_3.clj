@@ -65,8 +65,8 @@
 
 (def triggers
   [{:trigger/window-id :collect-segments
-    :trigger/refinement :accumulating
-    :trigger/on :watermark
+    :trigger/refinement :onyx.refinements/accumulating
+    :trigger/on :onyx.triggers/watermark
     :trigger/sync ::deliver-promise!
     :trigger/doc "Fires when this window's watermark has been exceeded"}])
 
