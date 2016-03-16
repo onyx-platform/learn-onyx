@@ -57,8 +57,8 @@
 
 (def triggers
   [{:trigger/window-id :collect-segments
-    :trigger/refinement :accumulating
-    :trigger/on :segment
+    :trigger/refinement :onyx.refinements/accumulating
+    :trigger/on :onyx.triggers/segment
     :trigger/fire-all-extents? true
     :trigger/threshold [10 :elements]
     :trigger/sync ::deliver-promise!
