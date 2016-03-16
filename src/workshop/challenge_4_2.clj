@@ -44,6 +44,8 @@
 
 ;;; Lifecycles ;;;
 
+(def state (atom nil))
+
 ;; <<< BEGIN FILL ME IN >>>
 
 (defn build-lifecycles [])
