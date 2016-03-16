@@ -48,8 +48,6 @@
 
 ;; <<< BEGIN FILL ME IN >>>
 
-(def state (atom nil))
-
 (defn inject-state [event lifecycle]
   {:challenge/state state})
 
