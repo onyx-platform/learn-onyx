@@ -44,8 +44,6 @@
 
 ;;; Lifecycles ;;;
 
-(def logger (agent nil))
-
 ;; <<< BEGIN FILL ME IN >>>
 
 (defn build-lifecycles [])
