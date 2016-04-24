@@ -13,7 +13,7 @@
 ;; http://www.onyxplatform.org/docs/user-guide/latest/information-model.html
 ;;
 ;;
-;; This challenge is an already-working example to get your started.
+;; This challenge is an already-working example to get you started.
 ;; It takes a stream of numbers and multiplies them by 2.
 ;; Go to the source file and read the comments about the catalog to get
 ;; an explanation about how it works.
