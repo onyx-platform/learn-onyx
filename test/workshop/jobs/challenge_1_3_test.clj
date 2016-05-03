@@ -60,6 +60,7 @@
                  :lifecycles lifecycles
                  :task-scheduler :onyx.task-scheduler/balanced}
             job-id (:job-id (onyx.api/submit-job peer-config job))]
+        (assert job-id "Job was not successfully submitted")
         (feedback-exception! peer-config job-id)
         (let [[j-actual k-actual l-actual] (u/collect-outputs! lifecycles [:J :K :L])]
           (u/segments-equal? j-expected-output j-actual)
