@@ -50,6 +50,7 @@
                  :flow-conditions c/flow-conditions
                  :task-scheduler :onyx.task-scheduler/balanced}
             job-id (:job-id (onyx.api/submit-job peer-config job))]
+        (assert job-id "Job was not successfully submitted")
         (feedback-exception! peer-config job-id)
         (let [[admins users guests] (u/collect-outputs! lifecycles outputs)]
           (u/segments-equal? expected-admins admins)
