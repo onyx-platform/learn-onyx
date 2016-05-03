@@ -8,7 +8,7 @@
 ;; Function tasks aren't the only thing in workflows that can
 ;; branch. Inputs and outputs can branch, too. Let's try a more
 ;; complex workflow, shown below. We use single capital letters
-;; for tasks this time for concision in the exmaple. The graph
+;; for tasks this time for concision in the example. The graph
 ;; flows with inputs at the top and outputs at the bottom.
 ;;
 ;; A    B       C
@@ -60,6 +60,7 @@
                  :lifecycles lifecycles
                  :task-scheduler :onyx.task-scheduler/balanced}
             job-id (:job-id (onyx.api/submit-job peer-config job))]
+        (assert job-id "Job was not successfully submitted")
         (feedback-exception! peer-config job-id)
         (let [[j-actual k-actual l-actual] (u/collect-outputs! lifecycles [:J :K :L])]
           (u/segments-equal? j-expected-output j-actual)
