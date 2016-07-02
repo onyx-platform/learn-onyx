@@ -1,4 +1,4 @@
-(defproject workshop "0.9.7-alpha19"
+(defproject workshop "0.9.7-alpha20"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.8.0"]
