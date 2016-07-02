@@ -1,4 +1,6 @@
 general:
+  artifacts:
+    - onyx.log
   branches:
     ignore:
       - master
