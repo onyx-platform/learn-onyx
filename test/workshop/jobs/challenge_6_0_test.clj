@@ -35,7 +35,7 @@
 ;; http://www.onyxplatform.org/docs/user-guide/latest/triggers.html
 
 ;; You'll notice that in this example, we use more stateful constructs like
-;; atoms and promises. Some of this is used to coordindate knowledge of
+;; atoms and promises. Some of this is used to coordinate knowledge of
 ;; completion. We'll explain what we're doing in each step for this challenge,
 ;; since we understand that it increases the level of complexity as a learner.
 ;; If you get stuck reading any particular part, keep moving. You might see
