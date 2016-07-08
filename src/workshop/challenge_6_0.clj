@@ -93,7 +93,7 @@
 ;; we can get onto the meat of this challenge - the window
 ;; and trigger constructs. Windows indicate *how* to accrete
 ;; state over time. Triggers indicate *what* to do with the data
-;; in reaction to a specific stimulous.
+;; in reaction to a specific stimulus.
 
 (def windows
   ;; :window/id is a unique name for this window. We need it
@@ -120,7 +120,7 @@
     ;; Here, we indicate a "window key". This lets us peek into the segment
     ;; itself and pull out the :event-time key. We use *this* value to bucket
     ;; the segment. Onyx is also capable of bucketing by wall clock (normally
-    ;; called "Processing Time") by using a Timer Trigger. See the User User for
+    ;; called "Processing Time") by using a Timer Trigger. See the User Guide for
     ;; more information on this.
     :window/window-key :event-time
 
