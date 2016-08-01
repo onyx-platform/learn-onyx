@@ -176,9 +176,10 @@
 ;;
 ;; While we use an atom here for ease, this is the ideal place to synchronize
 ;; window state to an external database or other 3rd party medium.
-(defn deliver-promise! [event window trigger {:keys [window-id lower-bound upper-bound]} state]
+(defn deliver-promise! [event window  {:keys [trigger/window-id] :as trigger} {:keys [lower-bound upper-bound] :as state-event} state]
   (let [lower (java.util.Date. lower-bound)
         upper (java.util.Date. upper-bound)]
+    (println "Trigger for" window-id "window")    
     (swap! fired-window-state assoc [lower upper] (into #{} state))))
 
 ;; Finally, it's important to note that if a machine fails before

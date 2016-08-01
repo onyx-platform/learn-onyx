@@ -66,7 +66,7 @@
 
 (def fired-window-state (atom {}))
 
-(defn deliver-promise! [event window trigger {:keys [window-id lower-bound upper-bound]} state]
+(defn deliver-promise! [event window {:keys [trigger/window-id] :as trigger} {:keys [lower-bound upper-bound] :as state-event} state]
   ;; <<< BEGIN FILL ME IN PART 2 >>>
 
   ;; <<< END FILL ME IN PART 2 >>>
