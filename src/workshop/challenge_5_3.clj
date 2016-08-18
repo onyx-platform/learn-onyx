@@ -41,7 +41,7 @@
 
 (defn process-user [segment]
   (if (= (:status segment) :guest)
-    (throw (ex-info "User is a guest" {:type :guest :segment segment}))
+    (throw (ex-info "User is a guest" {:type :guest}))
     segment))
 
 ;;; Lifecycles ;;;
@@ -85,7 +85,7 @@
   (= (:type (ex-data e)) :guest))
 
 (defn transform-exception [event segment e]
-    (assoc (:segment (ex-data e)) :error "Insufficient access level"))
+    (assoc segment :error "Insufficient access level"))
 
 (def flow-conditions
   [{:flow/from :process-user
