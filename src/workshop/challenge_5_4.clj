@@ -96,9 +96,6 @@
 (defn child? [event old new all-new]
   (< (:age new) 18))
 
-(defn adult? [event old new all-new]
-  (>= (:age new) 18))
-
 (def flow-conditions
   [{:flow/from :identity
     :flow/to [:children]
@@ -107,7 +104,7 @@
 
    {:flow/from :identity
     :flow/to [:adults]
-    :flow/predicate :workshop.challenge-5-4/adult?
+    :flow/predicate [:not :workshop.challenge-5-4/child?]
     :flow/exclude-keys [:age]}])
 
 ;; <<< END FILL ME IN >>>
