@@ -132,7 +132,7 @@
             job-id (:job-id (onyx.api/submit-job peer-config job))]
         (assert job-id "Job was not successfully submitted")
         (feedback-exception! peer-config job-id)
-        ;; Wait for promise p to be deliver, which indicates
+        ;; Wait for promise p to be delivered, which indicates
         ;; that the computation is finished. Then we check
         ;; the results.
         @p
