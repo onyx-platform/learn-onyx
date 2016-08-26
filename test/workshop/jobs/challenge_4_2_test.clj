@@ -7,7 +7,8 @@
 
 ;; Logging is great and all, but we've now opened to the door
 ;; to something much more interesting - maintaining state.
-;; In this challenge, you're going to create an atom in
+;; In this challenge, you're going to reference an atom defined
+;; in the corresponding source file and use it in
 ;; the :before-task-start lifecycle hook.
 ;; After each batch is processed, find the maximum value
 ;; that we saw in the :identity task. After the task is finished,
