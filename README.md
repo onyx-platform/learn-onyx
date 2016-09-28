@@ -83,7 +83,7 @@ Below is the table of contents for the levels and challenges you'll be working t
   - Challenge 1: Implement 3 task functions
   - Challenge 2: Write a function that emits multiple segments
   - Challenge 3: Write a catalog entry and parameterized function
-  - Challenge 4: Implement a bulk function
+  - Challenge 4: Implement a batch function
 - Level 4: Lifecycles
   - Challenge 0: Observe a lifecycle example
   - Challenge 1: Use lifecycles for logging
