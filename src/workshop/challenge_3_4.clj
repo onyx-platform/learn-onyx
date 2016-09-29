@@ -1,11 +1,12 @@
 (ns workshop.challenge-3-4
-  (:require [workshop.workshop-utils :as u]))
+  (:require [workshop.workshop-utils :as u]
+            [clojure.string :as s]))
 
 ;;; Workflows ;;;
 
 (def workflow
-  [[:read-segments :echo-segments]
-   [:echo-segments :write-segments]])
+  [[:read-segments :capitalize-names]
+   [:capitalize-names :write-segments]])
 
 ;;; Catalogs ;;;
 

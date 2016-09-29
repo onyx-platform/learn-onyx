@@ -8,19 +8,23 @@
 ;; Sometimes it's desirable to have a function act on more than
 ;; one segment at a time for performance reasons, like writing to
 ;; an intermediate database during a workflow. Onyx supports
-;; this with the catalog entry :onyx/bulk? set to a boolean variable.
+;; this with the catalog entry :onyx/batch-fn? set to a boolean variable.
 ;; When this is set to true, rather than supplying the function
 ;; with a single segment, the function is given the entire batch
-;; of segments being processed. This number is also configurable
-;; in the catalog by :onyx/batch-size. When :onyx/bulk? is set to
-;; true, the output of the function is *ignored*. All segments
-;; are passed through without modification to the downstream tasks.
+;; of segments being processed. The catch is that the return value
+;; of the function that has :onyx/batch-fn? set to true is that its
+;; return value must return a sequence of segments of the same length
+;; as its input. The elements of the two sequences are "zipped up" by
+;; position to form the parent/child relationship throughout the tree.
+;; For example, the element at index 0 of the input batch has children
+;; located at position 0 of the output batch.
 ;;
-;; Try implementing a bulk function that writes all the segments
-;; it sees to standard out. Use side effects directly in the task
-;; function. Later we'll learn about a better way to do side effects,
-;; but bulk functions are useful to know about when you need optimal
-;; performance.
+;; Batched functions are useful when the operation is more efficient
+;; operating over a group of segments than it would be over one segment
+;; per invocation.
+;;
+;; Try implementing a batched function that capitalizes the :name key
+;; in each segment.
 ;;
 ;; Try it with:
 ;;
@@ -38,7 +42,16 @@
    {:name "Lisa"}
    {:name "Tina"}])
 
-(def expected-output input)
+(def expected-output
+  [{:name "Mike"}
+   {:name "Lucas"}
+   {:name "Tim"}
+   {:name "Aaron"}
+   {:name "Lauren"}
+   {:name "Bob"}
+   {:name "Fred"}
+   {:name "Lisa"}
+   {:name "Tina"}])
 
 (deftest test-level-3-challenge-4
   (let [cluster-id (java.util.UUID/randomUUID)
