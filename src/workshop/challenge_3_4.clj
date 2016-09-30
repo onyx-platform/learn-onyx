@@ -24,10 +24,10 @@
 
       ;; <<< BEGIN FILL ME IN PART 1 >>>
 
-      {:onyx/name :echo-segments
-       :onyx/fn :workshop.challenge-3-4/echo-segments
+      {:onyx/name :capitalize-names
+       :onyx/fn :workshop.challenge-3-4/capitalize-names
        :onyx/type :function
-       :onyx/bulk? true
+       :onyx/batch-fn? true
        :onyx/batch-size batch-size
        :onyx/batch-timeout batch-timeout
        :onyx/doc "Writes the segments to stdout"}
@@ -47,9 +47,8 @@
 
 ;; <<< BEGIN FILL ME IN PART 2 >>>
 
-(defn echo-segments [segments]
-  (println segments)
-  :return-anything)
+(defn capitalize-names [segments]
+  (map #(update-in % [:name] s/capitalize) segments))
 
 ;; <<< END FILL ME IN PART 2 >>>
 
