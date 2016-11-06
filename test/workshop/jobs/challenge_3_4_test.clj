@@ -32,15 +32,15 @@
 ;;
 
 (def input
-  [{:name "Mike"}
-   {:name "Lucas"}
-   {:name "Tim"}
-   {:name "Aaron"}
-   {:name "Lauren"}
-   {:name "Bob"}
-   {:name "Fred"}
-   {:name "Lisa"}
-   {:name "Tina"}])
+  [{:name "mike"}
+   {:name "lucas"}
+   {:name "tim"}
+   {:name "aaron"}
+   {:name "lauren"}
+   {:name "bob"}
+   {:name "fred"}
+   {:name "lisa"}
+   {:name "tina"}])
 
 (def expected-output
   [{:name "Mike"}
