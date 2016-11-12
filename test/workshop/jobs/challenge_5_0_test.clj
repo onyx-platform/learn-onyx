@@ -12,7 +12,7 @@
 ;; a construct that describes how to route segments around your workflow.
 ;;
 ;; Onyx has an entire chapter in its user guided dedicated to flow conditions:
-;; http://www.onyxplatform.org/docs/user-guide/latest/flow-conditions.html
+;; http://www.onyxplatform.org/docs/user-guide/latest/#flow-conditions
 ;;
 ;; This challenge is an already-working example of flow conditions. Read
 ;; the source and get familiar with their basic usage.

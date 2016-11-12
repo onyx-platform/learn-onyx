@@ -1,5 +1,6 @@
 (ns workshop.cheat-sheet)
-;;;;;;;; CHEAT SHEET ;;;;;;;;
+
+;;;;;;;; Cheat sheet ;;;;;;;;
 
 ;;;;;;;;;;;;;;;;;
 ;; Workflow example
@@ -16,7 +17,7 @@
 ;;;;;;;;;;;;;;;;;
 ;; Catalog Entries
 ;; See information model for allowed keys:
-;; http://www.onyxplatform.org/docs/user-guide/latest/information-model.html
+;; http://www.onyxplatform.org/docs/cheat-sheet/latest/#/catalog-entry
 
 [;; Input task
  {:onyx/name :your-input-task-name
@@ -34,7 +35,7 @@
   :onyx/doc "Documentation for this catalog entry"}
 
  ;; Function task
- ;; http://www.onyxplatform.org/docs/user-guide/latest/functions.html
+ ;; http://www.onyxplatform.org/docs/user-guide/latest/#functions
  {:onyx/name :your-task-name
   :onyx/fn :your-ns/your-fn ; ::your-fn also works if you're in the generating ns
   :onyx/type :function
@@ -75,7 +76,7 @@
   :onyx/doc "Output task doc"}]
 
 ;;;;;;;;;;;;;;;;;
-;; http://www.onyxplatform.org/docs/user-guide/latest/functions.html
+;; http://www.onyxplatform.org/docs/user-guide/latest/#functions
 ;; Functions (for use on onyx/fn task)
 (defn your-fn [segment]
   ;; do something with the segment and return a segment
@@ -83,7 +84,7 @@
 
 ;;;;;;;;;;;;;;;;;
 ;; Lifecycles
-;; http://www.onyxplatform.org/docs/user-guide/latest/lifecycles.html
+;; http://www.onyxplatform.org/docs/user-guide/latest/#lifecycles
 
 ;; Lifecycle function examples for each lifecycle type
 ;; Notice that all lifecycle functions return maps except `start-task?`.
@@ -133,7 +134,7 @@
 
 ;;;;;;;;;;;;;;;;;
 ;; Flow Conditions
-;; http://www.onyxplatform.org/docs/user-guide/latest/flow-conditions.html
+;; http://www.onyxplatform.org/docs/user-guide/latest/#flow-conditions
 
 (def flow-conditions
   [{:flow/from :from-task

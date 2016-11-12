@@ -52,8 +52,8 @@ Once you see this, proceed to level 1, challenge 0. Run the test and observe the
 
 Each file has a moderate amount of comments to frame the discussion. Still, here are some links that will be helpful if you're approaching Onyx from scratch or need more information to help solve a challenge:
 
-- [Basic terminology and concepts](http://www.onyxplatform.org/docs/user-guide/latest/concepts.html)
-- [Full User Guide](http://www.onyxplatform.org/docs/)
+- [Basic terminology and concepts](http://www.onyxplatform.org/docs/user-guide/latest/#concepts)
+- [Full User Guide](http://www.onyxplatform.org/docs/user-guide/latest/)
 - [Examples Repository](https://github.com/onyx-platform/onyx-examples)
 
 ### Gotchas
