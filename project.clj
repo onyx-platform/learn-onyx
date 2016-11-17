@@ -4,7 +4,7 @@
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [org.clojure/core.async "0.2.374"]
                  ^{:voom {:repo "git@github.com:onyx-platform/onyx.git" :branch "master"}}
-                 [org.onyxplatform/onyx "0.9.13-20161112_101429-g72143e9"]
+                 [org.onyxplatform/onyx "0.9.13-20161117_043404-ga28f1f4"]
                  [org.slf4j/slf4j-api "1.7.12"]
                  [org.slf4j/slf4j-nop "1.7.12"]]
   :profiles {:dev {:dependencies [[org.clojure/tools.namespace "0.2.10"]
