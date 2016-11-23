@@ -48,6 +48,56 @@
 
 ;; <<< BEGIN FILL ME IN >>>
 
-(defn build-lifecycles [])
+(defn inject-state [event lifecycle]
+  {:challenge/state state})
+
+(defn compute-max [event lifecycle]
+  (when (seq (:onyx.core/batch event))
+    (let [max-val (apply max (map (comp :n :message) (:onyx.core/batch event)))]
+      (swap! (:challenge/state event)
+             (fn [state]
+               (if (or (nil? state) (> max-val state))
+                 max-val
+                 state)))))
+  {})
+
+(defn inject-reader-ch [event lifecycle]
+  {:core.async/chan (u/get-input-channel (:core.async/id lifecycle))})
+
+(defn inject-writer-ch [event lifecycle]
+  {:core.async/chan (u/get-output-channel (:core.async/id lifecycle))})
+
+(def aggregate-lifecycle
+  {:lifecycle/before-task-start inject-state
+   :lifecycle/after-batch compute-max})
+
+(def reader-lifecycle
+  {:lifecycle/before-task-start inject-reader-ch})
+
+(def writer-lifecycle
+  {:lifecycle/before-task-start inject-writer-ch})
+
+(defn build-lifecycles []
+  [{:lifecycle/task :identity
+    :lifecycle/calls :workshop.challenge-4-2/aggregate-lifecycle
+    :onyx/doc "Computes an aggregate over the event stream"}
+
+   {:lifecycle/task :read-segments
+    :lifecycle/calls :workshop.challenge-4-2/reader-lifecycle
+    :core.async/id (java.util.UUID/randomUUID)
+    :onyx/doc "Injects the core.async reader channel"}
+
+   {:lifecycle/task :read-segments
+    :lifecycle/calls :onyx.plugin.core-async/reader-calls
+    :onyx/doc "core.async plugin base lifecycle"}
+
+   {:lifecycle/task :write-segments
+    :lifecycle/calls :workshop.challenge-4-2/writer-lifecycle
+    :core.async/id (java.util.UUID/randomUUID)
+    :onyx/doc "Injects the core.async writer channel"}
+
+   {:lifecycle/task :write-segments
+    :lifecycle/calls :onyx.plugin.core-async/writer-calls
+    :onyx/doc "core.async plugin base lifecycle"}])
 
 ;; <<< END FILL ME IN >>>

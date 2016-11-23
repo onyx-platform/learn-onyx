@@ -46,9 +46,13 @@
 
 (def logger (agent nil))
 
-;; <<< BEGIN FILL ME IN FOR log-segments >>>
+(defn log-segments [event lifecycle]
+  (doseq [m (:onyx.core/batch event)]
+    (send logger (fn [_] (println (:message m)))))
+  {})
 
-;; <<< END FILL ME IN >>>
+(defn inject-reader-ch [event lifecycle]
+  {:core.async/chan (u/get-input-channel (:core.async/id lifecycle))})
 
 (defn inject-reader-ch [event lifecycle]
   {:core.async/chan (u/get-input-channel (:core.async/id lifecycle))})
@@ -56,20 +60,19 @@
 (defn inject-writer-ch [event lifecycle]
   {:core.async/chan (u/get-output-channel (:core.async/id lifecycle))})
 
+(def logger-lifecycle
+  {:lifecycle/after-batch log-segments})
+
 (def reader-lifecycle
   {:lifecycle/before-task-start inject-reader-ch})
 
 (def writer-lifecycle
   {:lifecycle/before-task-start inject-writer-ch})
 
-;; <<< BEGIN FILL ME IN FOR logger-lifecycle calls >>>
-
-;; <<< END FILL ME IN >>>
-
 (defn build-lifecycles []
-  [;; <<< BEGIN FILL ME IN FOR :times-three >>>
-
-   ;; <<< END FILL ME IN >>>
+  [{:lifecycle/task :times-three
+    :lifecycle/calls :workshop.challenge-4-1/logger-lifecycle
+    :onyx/doc "Logs segments as they're processed"}
 
    {:lifecycle/task :read-segments
     :lifecycle/calls :workshop.challenge-4-1/reader-lifecycle

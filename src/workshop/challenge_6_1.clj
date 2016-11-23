@@ -51,7 +51,13 @@
 ;; <<< BEGIN FILL ME IN PART 1 >>>
 
 (def windows
-  [])
+  [{:window/id :collect-segments
+    :window/task :bucket-page-views
+    :window/type :fixed
+    :window/aggregation [:onyx.windowing.aggregation/sum :bytes-sent]
+    :window/window-key :event-time
+    :window/range [2 :hours]
+    :window/doc "Sums byte values in two hour fixed windows."}])
 
 ;; <<< END FILL ME IN PART 1 >>>
 
@@ -68,6 +74,8 @@
 
 (defn deliver-promise! [event window {:keys [trigger/window-id] :as trigger} {:keys [lower-bound upper-bound] :as state-event} state]
   ;; <<< BEGIN FILL ME IN PART 2 >>>
-
+  (let [lower (java.util.Date. lower-bound)
+        upper (java.util.Date. upper-bound)]
+    (swap! fired-window-state assoc [lower upper] state))
   ;; <<< END FILL ME IN PART 2 >>>
   )

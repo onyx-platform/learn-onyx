@@ -112,6 +112,26 @@
 
 ;; <<< BEGIN FILL ME IN >>>
 
-(def flow-conditions)
+(defn admin? [event old-segment new-segment all-new-segments]
+  (= (:status new-segment) :admin))
+
+(defn user? [event old-segment new-segment all-new-segments]
+  (= (:status new-segment) :user))
+
+(defn guest? [event old-segment new-segment all-new-segments]
+  (= (:status new-segment) :guest))
+
+(def flow-conditions
+  [{:flow/from :identity
+    :flow/to [:admins-output]
+    :flow/predicate :workshop.challenge-5-1/admin?}
+
+   {:flow/from :identity
+    :flow/to [:users-output]
+    :flow/predicate :workshop.challenge-5-1/user?}
+
+   {:flow/from :identity
+    :flow/to [:guests-output]
+    :flow/predicate :workshop.challenge-5-1/guest?}])
 
 ;; <<< END FILL ME IN >>>

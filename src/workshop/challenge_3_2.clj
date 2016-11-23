@@ -41,7 +41,8 @@
 
 ;; <<< BEGIN FILL ME IN >>>
 
-
+(defn split-sentence [{:keys [sentence]}]
+  (map (fn [word] {:word word}) (clojure.string/split sentence #"\s")))
 
 ;; <<< END FILL ME IN >>>
 
