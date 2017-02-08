@@ -8,6 +8,7 @@
                  [org.slf4j/slf4j-nop "1.7.12"]]
   :profiles {:dev {:dependencies [[org.clojure/tools.namespace "0.2.10"]
                                   [pjstadig/humane-test-output "0.7.0"]]
+                   :jvm-opts ^:replace ["-server" "-Xmx2400M" "-XX:+UseG1GC"]
                    :plugins [[lein-update-dependency "0.1.2"]
                              [lein-set-version "0.4.1"]]
                    :source-paths ["env/dev" "src"]
