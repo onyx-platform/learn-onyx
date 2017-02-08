@@ -46,10 +46,9 @@
 
 (def logger (agent nil))
 
-(defn log-segments [event lifecycle]
-  (doseq [m (:onyx.core/batch event)]
-    (send logger (fn [_] (println m))))
-  {})
+;; <<< BEGIN FILL ME IN FOR log-segments >>>
+
+;; <<< END FILL ME IN >>>
 
 (defn inject-writer-ch [event lifecycle]
   {:core.async/chan (u/get-output-channel (:core.async/id lifecycle))})
