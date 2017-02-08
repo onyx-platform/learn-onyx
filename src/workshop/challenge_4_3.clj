@@ -58,18 +58,12 @@
   (send logger (fn [_] (println "Summation was:" @(:challenge/state event))))
   {})
 
-(defn inject-reader-ch [event lifecycle]
-  {:core.async/chan (u/get-input-channel (:core.async/id lifecycle))})
-
 (defn inject-writer-ch [event lifecycle]
   {:core.async/chan (u/get-output-channel (:core.async/id lifecycle))})
 
 (def aggregate-lifecycle
   {:lifecycle/before-task-start inject-state
    :lifecycle/after-task-stop write-max-segment})
-
-(def reader-lifecycle
-  {:lifecycle/before-task-start inject-reader-ch})
 
 (def writer-lifecycle
   {:lifecycle/before-task-start inject-writer-ch})
@@ -80,7 +74,7 @@
     :onyx/doc "Computes an aggregate over the event stream"}
 
    {:lifecycle/task :read-segments
-    :lifecycle/calls :workshop.challenge-4-3/reader-lifecycle
+    :lifecycle/calls :workshop.workshop-utils/in-calls
     :core.async/id (java.util.UUID/randomUUID)
     :onyx/doc "Injects the core.async reader channel"}
 

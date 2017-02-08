@@ -1,6 +1,7 @@
 (ns workshop.workshop-utils
   (:require [clojure.test :refer [is]]
-            [clojure.core.async :refer [chan sliding-buffer >!!]]
+            [clojure.set :refer [join]]
+            [clojure.core.async :refer [chan sliding-buffer >!! close!]]
             [clojure.java.io :refer [resource]]
             [onyx.plugin.core-async :refer [take-segments!]]))
 
@@ -39,9 +40,7 @@
   "Onyx is a parallel, distributed system - so ordering isn't guaranteed.
    Does an unordered comparison of segments to check for equality."
   [expected actual]
-  (is (= (into #{} expected) (into #{} (remove (partial = :done) actual))))
-  (is (= :done (last actual)))
-  (is (= (dec (count actual)) (count expected))))
+  (is (= (into #{} expected) (into #{} actual))))
 
 (defn load-peer-config [onyx-id]
   (assoc (-> "dev-peer-config.edn" resource slurp read-string)
@@ -56,23 +55,63 @@
 
 ;;;; Lifecycles utils ;;;;
 
-(def input-channel-capacity 10000)
+(def default-channel-size 1000)
 
-(def output-channel-capacity (inc input-channel-capacity))
+(def output-channel-capacity (inc default-channel-size))
 
 (defonce channels (atom {}))
+(defonce buffers (atom {}))
 
-(defn get-channel [id size]
-  (or (get @channels id)
-      (let [ch (chan size)]
-        (swap! channels assoc id ch)
-        ch)))
+(defn get-channel
+  ([id] (get-channel id default-channel-size))
+  ([id size]
+   (if-let [id (get @channels id)]
+     id
+     (do (swap! channels assoc id (chan (or size default-channel-size)))
+         (get-channel id)))))
+
+(defn get-buffer
+  [id]
+   (if-let [id (get @buffers id)]
+     id
+     (do (swap! buffers assoc id (atom {}))
+         (get-buffer id))))
 
 (defn get-input-channel [id]
-  (get-channel id input-channel-capacity))
+  (get-channel id default-channel-size))
 
 (defn get-output-channel [id]
   (get-channel id output-channel-capacity))
+
+(defn inject-in-ch
+  [_ lifecycle]
+  {:core.async/buffer (get-buffer (:core.async/id lifecycle))
+   :core.async/chan (get-channel (:core.async/id lifecycle)
+                                 (or (:core.async/size lifecycle)
+                                     default-channel-size))})
+
+(defn inject-out-ch
+  [_ lifecycle]
+  {:core.async/chan (get-channel (:core.async/id lifecycle)
+                                 (or (:core.async/size lifecycle)
+                                     default-channel-size))})
+
+(def in-calls
+  {:lifecycle/before-task-start inject-in-ch})
+
+(def out-calls
+  {:lifecycle/before-task-start inject-out-ch})
+
+(defn get-core-async-channels
+  [{:keys [catalog lifecycles]}]
+  (let [lifecycle-catalog-join (join catalog lifecycles {:onyx/name :lifecycle/task})]
+    (reduce (fn [acc item]
+              (assoc acc
+                     (:onyx/name item)
+                     (get-channel (:core.async/id item)
+                                  (:core.async/size item)))) 
+            {} 
+            (filter :core.async/id lifecycle-catalog-join))))
 
 (defn channel-id-for [lifecycles task-name]
   (->> lifecycles
@@ -86,9 +125,9 @@
     (let [in-ch (get-input-channel (channel-id-for lifecycles task))]
       (doseq [segment segments]
         (>!! in-ch segment))
-      (>!! in-ch :done))))
+      (close! in-ch))))
 
 (defn collect-outputs! [lifecycles output-tasks]
   (->> output-tasks
        (map #(get-output-channel (channel-id-for lifecycles %)))
-       (map #(take-segments! %))))
+       (map #(take-segments! % 50))))

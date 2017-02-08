@@ -25,22 +25,15 @@
        :onyx/fn :clojure.core/identity
        :onyx/type :output
        :onyx/medium :function
-       :onyx/uniqueness-key :event-id
        :onyx/batch-size batch-size
        :onyx/batch-timeout batch-timeout
        :onyx/doc "Identity function, used for windowing segments unchanged."}]))
 
 ;;; Lifecycles ;;;
 
-(defn inject-reader-ch [event lifecycle]
-  {:core.async/chan (u/get-input-channel (:core.async/id lifecycle))})
-
-(def reader-lifecycle
-  {:lifecycle/before-task-start inject-reader-ch})
-
 (defn build-lifecycles []
   [{:lifecycle/task :read-segments
-    :lifecycle/calls :workshop.challenge-6-2/reader-lifecycle
+    :lifecycle/calls :workshop.workshop-utils/in-calls
     :core.async/id (java.util.UUID/randomUUID)
     :onyx/doc "Injects the core.async reader channel"}
 
