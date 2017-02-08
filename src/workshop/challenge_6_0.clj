@@ -57,11 +57,6 @@
        ;; that the output medium is a :function.
        :onyx/medium :function
 
-       ;; Given that we want to process a piece of data and combine
-       ;; it with our running aggregate exactly one time, we need
-       ;; a globally unique key in the segment help Onyx know if its
-       ;; seen it before. We indicate this key with :onyx/uniqueness-key.
-       :onyx/uniqueness-key :event-id
        :onyx/batch-size batch-size
        :onyx/batch-timeout batch-timeout
        :onyx/doc "Identity function, used for windowing segments unchanged."}
@@ -71,15 +66,9 @@
 
 ;;; Lifecycles ;;;
 
-(defn inject-reader-ch [event lifecycle]
-  {:core.async/chan (u/get-input-channel (:core.async/id lifecycle))})
-
-(def reader-lifecycle
-  {:lifecycle/before-task-start inject-reader-ch})
-
 (defn build-lifecycles []
   [{:lifecycle/task :read-segments
-    :lifecycle/calls :workshop.challenge-6-0/reader-lifecycle
+    :lifecycle/calls :workshop.workshop-utils/in-calls
     :core.async/id (java.util.UUID/randomUUID)
     :onyx/doc "Injects the core.async reader channel"}
 
