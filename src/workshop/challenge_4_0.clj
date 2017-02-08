@@ -92,10 +92,6 @@
 ;; a memoized function to obtain a reference to the channel and add
 ;; the core.async channel into the event map so that peers can read
 ;; from it.
-(defn inject-reader-ch [event lifecycle]
-  {:core.async/chan (u/get-input-channel (:core.async/id lifecycle))})
-
-;; We do the same here as above, except for a writer output channel.
 (defn inject-writer-ch [event lifecycle]
   {:core.async/chan (u/get-output-channel (:core.async/id lifecycle))})
 
@@ -105,9 +101,6 @@
 (def logger-lifecycle
   {:lifecycle/before-task-start log-task-start
    :lifecycle/after-task-stop log-task-stop})
-
-(def reader-lifecycle
-  {:lifecycle/before-task-start inject-reader-ch})
 
 (def writer-lifecycle
   {:lifecycle/before-task-start inject-writer-ch})
@@ -127,7 +120,7 @@
    ;; and reference this later to obtain a shared reference to a channel
    ;; via memoization.
    {:lifecycle/task :read-segments
-    :lifecycle/calls :workshop.challenge-4-0/reader-lifecycle
+    :lifecycle/calls :workshop.workshop-utils/in-calls
     :core.async/id (java.util.UUID/randomUUID)
     :onyx/doc "Injects the core.async reader channel"}
 

@@ -50,14 +50,11 @@
 
 ;; <<< END FILL ME IN >>>
 
-(defn inject-reader-ch [event lifecycle]
-  {:core.async/chan (u/get-input-channel (:core.async/id lifecycle))})
-
 (defn inject-writer-ch [event lifecycle]
   {:core.async/chan (u/get-output-channel (:core.async/id lifecycle))})
 
-(def reader-lifecycle
-  {:lifecycle/before-task-start inject-reader-ch})
+(def logger-lifecycle
+  {:lifecycle/after-batch log-segments})
 
 (def writer-lifecycle
   {:lifecycle/before-task-start inject-writer-ch})
@@ -72,7 +69,7 @@
    ;; <<< END FILL ME IN >>>
 
    {:lifecycle/task :read-segments
-    :lifecycle/calls :workshop.challenge-4-1/reader-lifecycle
+    :lifecycle/calls :workshop.workshop-utils/in-calls
     :core.async/id (java.util.UUID/randomUUID)
     :onyx/doc "Injects the core.async reader channel"}
 
