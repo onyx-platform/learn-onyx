@@ -25,7 +25,6 @@
        :onyx/fn :clojure.core/identity
        :onyx/type :output
        :onyx/medium :function
-       :onyx/uniqueness-key :event-id
        :onyx/batch-size batch-size
        :onyx/batch-timeout batch-timeout
        :onyx/doc "Identity function, used for windowing segments unchanged."}]))
