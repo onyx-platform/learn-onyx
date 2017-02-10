@@ -121,6 +121,7 @@
 (def triggers
   ;; Each trigger stimulates a particular window. This must match a :window/id.
   [{:trigger/window-id :collect-segments
+    :trigger/id :sync
 
     ;; When the trigger "fires", we refine the window state. In this example,
     ;; we'll leave our state untouched and simply accumulate it. We can also

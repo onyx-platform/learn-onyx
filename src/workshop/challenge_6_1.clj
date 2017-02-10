@@ -56,6 +56,7 @@
 
 (def triggers
   [{:trigger/window-id :collect-segments
+    :trigger/id :sync
     :trigger/refinement :onyx.refinements/accumulating
     :trigger/on :onyx.triggers/segment
     :trigger/fire-all-extents? true
