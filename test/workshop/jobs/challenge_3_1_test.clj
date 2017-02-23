@@ -7,8 +7,9 @@
 
 ;; Now that you know the rules of functions, let's implement some
 ;; functions for a workflow. This Onyx job will have 3 function tasks.
-;; You'll need to implement the functions to pass the test. Read
-;; the docstrings on the corresponding catalog entries for the
+;; You'll need to implement the functions to pass the test.  Use a
+;; generic function that builds on the lessons from challenge_2_2.
+;; Read the docstrings on the corresponding catalog entries for the
 ;; functions' purposes.
 ;;
 ;; Try it with:
