@@ -31,15 +31,19 @@
        :onyx/doc "Converts :name to all upper-case letters."}
 
       {:onyx/name :interpose-pipe
-       :onyx/fn :workshop.challenge-3-1/interpose-pipe
+       :onyx/fn :workshop.challenge-3-1/interpose-char
        :onyx/type :function
+       :my/char "|"
+       :onyx/params [:my/char]
        :onyx/batch-size batch-size
        :onyx/batch-timeout batch-timeout
        :onyx/doc "Interposes the pipe character (|) between all chars in :name"}
 
       {:onyx/name :interpose-space
-       :onyx/fn :workshop.challenge-3-1/interpose-space
+       :onyx/fn :workshop.challenge-3-1/interpose-char
        :onyx/type :function
+       :my/char " "
+       :onyx/params [:my/char]
        :onyx/batch-size batch-size
        :onyx/batch-timeout batch-timeout
        :onyx/doc "Interposes a single space character between all chars in :name"}
