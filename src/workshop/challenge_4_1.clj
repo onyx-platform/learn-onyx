@@ -48,11 +48,8 @@
 
 (defn log-segments [event lifecycle]
   (doseq [m (:onyx.core/batch event)]
-    (send logger (fn [_] (println (:message m)))))
+    (send logger (fn [_] (println m))))
   {})
-
-(defn inject-reader-ch [event lifecycle]
-  {:core.async/chan (u/get-input-channel (:core.async/id lifecycle))})
 
 (defn inject-writer-ch [event lifecycle]
   {:core.async/chan (u/get-output-channel (:core.async/id lifecycle))})

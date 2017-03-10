@@ -64,11 +64,9 @@
 (defn upper-case [segment]
   (update-in segment [:name] clojure.string/upper-case))
 
-(defn interpose-pipe [segment]
-  (update-in segment [:name] #(apply str (interpose "|" %))))
-
-(defn interpose-space [segment]
-  (update-in segment [:name] #(apply str (interpose " " %))))
+(defn interpose-char
+  [c segment]
+  (update-in segment [:name] #(apply str (interpose c %))))
 
 ;; <<< END FILL ME IN >>>
 

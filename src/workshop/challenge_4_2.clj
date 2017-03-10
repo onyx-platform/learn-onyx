@@ -53,7 +53,7 @@
 
 (defn compute-max [event lifecycle]
   (when (seq (:onyx.core/batch event))
-    (let [max-val (apply max (map (comp :n :message) (:onyx.core/batch event)))]
+    (let [max-val (apply max (map :n (:onyx.core/batch event)))]
       (swap! (:challenge/state event)
              (fn [state]
                (if (or (nil? state) (> max-val state))
@@ -61,18 +61,12 @@
                  state)))))
   {})
 
-(defn inject-reader-ch [event lifecycle]
-  {:core.async/chan (u/get-input-channel (:core.async/id lifecycle))})
-
 (defn inject-writer-ch [event lifecycle]
   {:core.async/chan (u/get-output-channel (:core.async/id lifecycle))})
 
 (def aggregate-lifecycle
   {:lifecycle/before-task-start inject-state
    :lifecycle/after-batch compute-max})
-
-(def reader-lifecycle
-  {:lifecycle/before-task-start inject-reader-ch})
 
 (def writer-lifecycle
   {:lifecycle/before-task-start inject-writer-ch})
@@ -83,7 +77,7 @@
     :onyx/doc "Computes an aggregate over the event stream"}
 
    {:lifecycle/task :read-segments
-    :lifecycle/calls :workshop.challenge-4-2/reader-lifecycle
+    :lifecycle/calls :workshop.workshop-utils/in-calls
     :core.async/id (java.util.UUID/randomUUID)
     :onyx/doc "Injects the core.async reader channel"}
 
