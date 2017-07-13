@@ -54,9 +54,6 @@
 (defn inject-writer-ch [event lifecycle]
   {:core.async/chan (u/get-output-channel (:core.async/id lifecycle))})
 
-(def logger-lifecycle
-  {:lifecycle/after-batch log-segments})
-
 (def writer-lifecycle
   {:lifecycle/before-task-start inject-writer-ch})
 
