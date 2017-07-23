@@ -34,7 +34,7 @@
 ;; so if you need a bit more of an explanation, you might want to consult
 ;; the documentation on this feature for hints:
 ;;
-;; https://github.com/onyx-platform/onyx/blob/0.8.x/doc/user-guide/functions.md#grouping--aggregation
+;; https://github.com/onyx-platform/onyx/blob/0.10.x/doc/user-guide/functions.adoc#grouping--aggregation
 ;;
 ;; Try it with:
 ;;
