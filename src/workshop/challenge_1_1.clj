@@ -28,7 +28,7 @@
        :onyx/type :function
        :onyx/batch-size batch-size
        :onyx/batch-timeout batch-timeout
-       :onyx/doc "Mutiply :n by itself twice"}
+       :onyx/doc "Multiply :n by itself twice"}
 
       {:onyx/name :add-ten
        :onyx/fn :workshop.challenge-1-1/add-ten
