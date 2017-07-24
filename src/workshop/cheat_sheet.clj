@@ -30,7 +30,7 @@
   :onyx/batch-timeout 1000 
   ;; enable to restrict the number of peers working on this task
   ; :onyx/max-peers 1 
-  ;; enable to force a minumum number of peers onto this task
+  ;; enable to force a minimum number of peers onto this task
   ; :onyx/min-peers 1 
   :onyx/doc "Documentation for this catalog entry"}
 
