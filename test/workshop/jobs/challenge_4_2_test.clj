@@ -10,6 +10,12 @@
 ;; In this challenge, you're going to reference an atom defined
 ;; in the corresponding source file and use it in
 ;; the :before-task-start lifecycle hook.
+;;
+;; Remember that lifecycle hooks return maps, like the
+;; `writer-lifecycle` hooks did on the previous examples. The
+;; elements from the map you return will be merged with those being
+;; passed on the event to other lifecycle handlers.
+;;
 ;; After each batch is processed, find the maximum value
 ;; that we saw in the :identity task. After the task is finished,
 ;; we'll query the atom to find the maximum value.
