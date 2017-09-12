@@ -23,8 +23,8 @@
 ;; {:onyx/name :my-task-name
 ;;  :onyx/fn :my.ns/fn
 ;;  :onyx/type :function
-;;  :my/param "this is the argument"
-;;  :onyx/params [:my/param]}
+;;  :my/param "this is argument" ; actual value we'll pass for the argument identified by :my/param
+;;  :onyx/params [:my/param]}    ; vector of keywords to fill in as parameters
 ;;
 ;; Try it with:
 ;;
