@@ -123,11 +123,6 @@
   [{:trigger/window-id :collect-segments
     :trigger/id :sync
 
-    ;; When the trigger "fires", we refine the window state. In this example,
-    ;; we'll leave our state untouched and simply accumulate it. We can also
-    ;; choose to use a :discarding refinement mode - throwing away the state
-    :trigger/refinement :onyx.refinements/accumulating
-
     ;; Different "types" of trigger react to different stimuli. This is a
     ;; segment-based trigger. It fires each time it sees N segments. After
     ;; it fires, it resets its counter and repeats the same process.
