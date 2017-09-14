@@ -51,6 +51,9 @@
     (send logger (fn [_] (println m))))
   {})
 
+(def logger-lifecycle
+  {:lifecycle/after-batch log-segments})
+
 (defn inject-writer-ch [event lifecycle]
   {:core.async/chan (u/get-output-channel (:core.async/id lifecycle))})
 
