@@ -6,13 +6,15 @@
             [onyx.api]))
 
 ;; Time to compose what we've learned about state and lifecycles
-;; with function parameters. One way to add parameters to a function
-;; is with :onyx/params. Another way is by using lifecycles. You
-;; can add non-serializable parameters to a function by using the
+;; with function parameters. One way is by using lifecycles, as
+;; we have seen. The other is to add parameters to a function
+;; with :onyx/params.
+;;
+;; You can add non-serializable parameters to a function by using the
 ;; :before-task-start and/or :before-batch lifecycles. Return a map
 ;; with key :onyx.core/params. The value of this key should be a vector
 ;; of values. This vector is applied to the *beginning* of the function
-;; signature.
+;; signature, so you'll get them before the segment.
 ;;
 ;; In this challenge, you'll create an atom using lifecycles to sum
 ;; up the :n values of a segment. Maintain the state through the function,
