@@ -6,6 +6,10 @@
 (def workflow
   [[:read-segments :bucket-page-views]])
 
+(defn watermark-fn [segment]
+  ;;  <<< FILL ME IN >>>
+  )
+
 ;;; Catalogs ;;;
 
 (defn build-catalog
@@ -15,6 +19,7 @@
        :onyx/plugin :onyx.plugin.core-async/input
        :onyx/type :input
        :onyx/medium :core.async
+       :onyx/assign-watermark-fn ::watermark-fn
        :onyx/batch-size batch-size
        :onyx/batch-timeout batch-timeout
        :onyx/max-peers 1
@@ -42,7 +47,7 @@
     :onyx/doc "core.async plugin base lifecycle"}])
 
 ;; <<< BEGIN FILL ME IN PART 1 >>>
-
+;; Use an :onyx.triggers/watermark trigger.
 (def windows
   [{:window/id :collect-segments
     :window/task :bucket-page-views
