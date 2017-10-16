@@ -6,6 +6,10 @@
 (def workflow
   [[:read-segments :bucket-page-views]])
 
+(defn watermark-fn [segment]
+  ;;  <<< FILL ME IN >>>
+  )
+
 ;;; Catalogs ;;;
 
 
@@ -47,7 +51,7 @@
     :onyx/doc "core.async plugin base lifecycle"}])
 
 ;; <<< BEGIN FILL ME IN PART 1 >>>
-
+;; Use an :onyx.triggers/watermark trigger.
 (def windows
   [{:window/id :collect-segments
     :window/task :bucket-page-views
