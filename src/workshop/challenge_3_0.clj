@@ -65,7 +65,7 @@
 ;; in a few ways, but typically it's most convenient to use
 ;; :onyx/params in the catalog entry. Parameters are prepended
 ;; to *the front* of the function signature. The segment always
-;; comes last. That is, the a function with two added parameters
+;; comes last. That is, a function with two added parameters
 ;; will have signature:
 ;;
 ;; (fn name [param-1 param-2 segment])
