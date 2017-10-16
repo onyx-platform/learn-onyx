@@ -8,6 +8,10 @@
 
 ;;; Catalogs ;;;
 
+
+(defn watermark-fn [segment]
+  (.getTime (:event-time segment)))
+
 (defn build-catalog
   ([] (build-catalog 5 50))
   ([batch-size batch-timeout]
@@ -15,6 +19,7 @@
        :onyx/plugin :onyx.plugin.core-async/input
        :onyx/type :input
        :onyx/medium :core.async
+       :onyx/assign-watermark-fn ::watermark-fn
        :onyx/batch-size batch-size
        :onyx/batch-timeout batch-timeout
        :onyx/max-peers 1
@@ -60,6 +65,7 @@
   [{:trigger/window-id :collect-segments
     :trigger/id :sync-collect
     :trigger/on :onyx.triggers/watermark
+    :trigger/state-context [:window-state] 
     :trigger/sync ::deliver-promise!
     :trigger/doc "Fires when this window's watermark has been exceeded"}])
 
