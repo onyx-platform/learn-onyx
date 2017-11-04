@@ -41,11 +41,7 @@
    {:username "Kara" :status :user}])
 
 (def expected-output
-  [{:username "Mike" :status :admin}
-   {:username "Lucas" :status :admin}
-   {:username "Linda" :status :user}
-   {:username "Kara" :status :user}
-   {:username "Ron" :status :guest :error "Insufficient access level"}])
+  [{:username "Ron" :status :guest :error "Insufficient access level"}])
 
 (deftest test-level-5-challenge-3
   (let [cluster-id (java.util.UUID/randomUUID)
