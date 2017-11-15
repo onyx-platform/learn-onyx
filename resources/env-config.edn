@@ -1,5 +1,1 @@
-{:zookeeper/server? true
- :onyx.bookkeeper/server? true
- :onyx.bookkeeper/delete-server-data? true
- :onyx.bookkeeper/local-quorum? true
- :onyx.bookkeeper/local-quorum-ports [3196 3197 3198]}
+{:zookeeper/server? true}

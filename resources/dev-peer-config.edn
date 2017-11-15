@@ -1,4 +1,5 @@
 {:onyx.peer/job-scheduler :onyx.job-scheduler/greedy
+ :onyx.peer/storage.zk.insanely-allow-windowing? true
  :onyx.messaging/impl :aeron
  :onyx.messaging/peer-port 40199
  :onyx.messaging/bind-addr "localhost"}
