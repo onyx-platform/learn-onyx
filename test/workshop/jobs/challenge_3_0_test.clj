@@ -11,6 +11,10 @@
 ;; how to harness a few interesting patterns that relate to concepts
 ;; we learned earlier.
 ;;
+;; We are writing functions that literally deal with a single item,
+;; not a collection of items, so no mapping or reduction is
+;; necessary.
+;;
 ;; Onyx has a chapter in its user guide dedicated to functions:
 ;; http://www.onyxplatform.org/docs/user-guide/latest/#functions
 ;;
