@@ -1,0 +1,29 @@
+version: 2
+executorType: docker
+jobs:
+  build:
+    docker:
+      - image: circleci/clojure:lein-2.8.1
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ .Branch }}-{{ .Revision }}
+
+      - run: 
+          name: add lein voom
+          command: mkdir ~/.lein && echo '{:user {:plugins [[lein-voom "0.1.0-20180617_140646-g0ba7ec8"]]}}' > ~/.lein/profiles.clj
+
+      - run: 
+          name: lein voom build deps
+          command: lein voom build-deps
+
+      - run: 
+          name: test
+          command: lein test
+
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: v1-dependencies-{{ .Branch }}-{{ .Revision }}
