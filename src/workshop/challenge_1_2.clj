@@ -5,7 +5,7 @@
 
 ;;; <<< BEGIN FILL ME IN >>>
 
-(def workflow)
+(def workflow [])
 
 ;;; <<< END FILL ME IN >>>
 
