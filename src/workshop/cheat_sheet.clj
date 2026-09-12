@@ -17,7 +17,7 @@
 ;;;;;;;;;;;;;;;;;
 ;; Catalog Entries
 ;; See information model for allowed keys:
-;; http://www.onyxplatform.org/docs/cheat-sheet/latest/#/catalog-entry
+;; https://onyx-platform.github.io/docs/cheat-sheet/latest/#/catalog-entry
 
 [;; Input task
  {:onyx/name :your-input-task-name
@@ -35,7 +35,7 @@
   :onyx/doc "Documentation for this catalog entry"}
 
  ;; Function task
- ;; http://www.onyxplatform.org/docs/user-guide/latest/#functions
+ ;; https://onyx-platform.github.io/docs/user-guide/latest/#functions
  {:onyx/name :your-task-name
   :onyx/fn :your-ns/your-fn ; ::your-fn also works if you're in the generating ns
   :onyx/type :function
@@ -76,7 +76,7 @@
   :onyx/doc "Output task doc"}]
 
 ;;;;;;;;;;;;;;;;;
-;; http://www.onyxplatform.org/docs/user-guide/latest/#functions
+;; https://onyx-platform.github.io/docs/user-guide/latest/#functions
 ;; Functions (for use on onyx/fn task)
 (defn your-fn [segment]
   ;; do something with the segment and return a segment
@@ -84,7 +84,7 @@
 
 ;;;;;;;;;;;;;;;;;
 ;; Lifecycles
-;; http://www.onyxplatform.org/docs/user-guide/latest/#lifecycles
+;; https://onyx-platform.github.io/docs/user-guide/latest/#lifecycles
 
 ;; Lifecycle function examples for each lifecycle type
 ;; Notice that all lifecycle functions return maps except `start-task?`.
@@ -134,7 +134,7 @@
 
 ;;;;;;;;;;;;;;;;;
 ;; Flow Conditions
-;; http://www.onyxplatform.org/docs/user-guide/latest/#flow-conditions
+;; https://onyx-platform.github.io/docs/user-guide/latest/#flow-conditions
 
 (def flow-conditions
   [{:flow/from :from-task

@@ -10,7 +10,7 @@
 ;; of this as isolating the "structure" of your computation.
 ;;
 ;; Onyx's information model is documented in the cheat sheet: 
-;; http://www.onyxplatform.org/docs/cheat-sheet/latest/
+;; https://onyx-platform.github.io/docs/cheat-sheet/latest/
 ;;
 ;; This challenge is an already-working example to get your started.
 ;; Try it with:
